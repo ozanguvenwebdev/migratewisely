@@ -1,0 +1,350 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-17 11:02+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: myproject/settings.py:168
+msgid "English"
+msgstr ""
+
+#: myproject/settings.py:169
+msgid "Spanish"
+msgstr ""
+
+#: myproject/settings.py:170
+msgid "French"
+msgstr ""
+
+#: myproject/settings.py:171
+msgid "Turkish"
+msgstr ""
+
+#: myproject/settings.py:172
+msgid "Hindi"
+msgstr ""
+
+#: myproject/settings.py:173
+msgid "Persian"
+msgstr ""
+
+#: myproject/settings.py:174
+msgid "Arabic"
+msgstr ""
+
+#: myproject/settings.py:175
+msgid "Vietnamese"
+msgstr ""
+
+#: myproject/settings.py:176
+msgid "Urdu"
+msgstr ""
+
+#: myproject/templates/allEntries.html:43 myproject/templates/category.html:61
+#: myproject/templates/country.html:61 myproject/templates/entry.html:41
+#: myproject/templates/post.html:61 myproject/templates/profile.html:39
+#: myproject/templates/settings.html:39 myproject/templates/start-entry.html:42
+#: myproject/templates/tag.html:62 myproject/templates/tags/innernavbar.html:34
+msgid "Homepage"
+msgstr "Página principal"
+
+#: myproject/templates/allEntries.html:59
+#, fuzzy
+#| msgid "Latest Content"
+msgid "Latest Entries"
+msgstr "Contenido más reciente"
+
+#: myproject/templates/allEntries.html:61 myproject/templates/profile.html:143
+#: myproject/templates/profile.html:194 myproject/templates/start-entry.html:40
+#: myproject/templates/start-entry.html:43
+#: myproject/templates/start-entry.html:61
+msgid "Start Entry"
+msgstr ""
+
+#: myproject/templates/allEntries.html:63
+msgid "Log In To Start Entry"
+msgstr ""
+
+#: myproject/templates/category.html:62
+#: myproject/templates/tags/leftsidewall.html:14
+#: myproject/templates/tags/rightside.html:50
+msgid "Categories"
+msgstr "Categorías"
+
+#: myproject/templates/category.html:186 myproject/templates/country.html:186
+#: myproject/templates/entry.html:67 myproject/templates/post.html:219
+#: myproject/templates/profile.html:121 myproject/templates/profile.html:158
+#: myproject/templates/tags/entry-list.html:27
+msgid "Comments"
+msgstr ""
+
+#: myproject/templates/category.html:204 myproject/templates/country.html:204
+#: myproject/templates/entry.html:89 myproject/templates/post.html:237
+msgid "Reply"
+msgstr ""
+
+#: myproject/templates/category.html:206 myproject/templates/category.html:230
+#: myproject/templates/category.html:290 myproject/templates/country.html:206
+#: myproject/templates/country.html:230 myproject/templates/country.html:291
+#: myproject/templates/entry.html:115 myproject/templates/entry.html:167
+#: myproject/templates/post.html:239 myproject/templates/post.html:263
+#: myproject/templates/post.html:323 myproject/templates/start-entry.html:127
+msgid "Submit"
+msgstr ""
+
+#: myproject/templates/category.html:222 myproject/templates/country.html:222
+#: myproject/templates/entry.html:107 myproject/templates/post.html:255
+msgid "Maximum Characters Reached"
+msgstr ""
+
+#: myproject/templates/category.html:224 myproject/templates/category.html:287
+#: myproject/templates/country.html:224 myproject/templates/country.html:288
+#: myproject/templates/entry.html:109 myproject/templates/entry.html:163
+#: myproject/templates/post.html:257 myproject/templates/post.html:320
+msgid "Write Your Comments"
+msgstr ""
+
+#: myproject/templates/category.html:231 myproject/templates/country.html:231
+#: myproject/templates/entry.html:116 myproject/templates/post.html:264
+msgid "Characters"
+msgstr ""
+
+#: myproject/templates/category.html:265 myproject/templates/country.html:265
+#: myproject/templates/entry.html:150 myproject/templates/post.html:298
+#: myproject/templates/profile.html:141 myproject/templates/profile.html:192
+msgid "No Comments So Far"
+msgstr ""
+
+#: myproject/templates/category.html:271 myproject/templates/country.html:271
+msgid "Share Your Comment"
+msgstr ""
+
+#: myproject/templates/category.html:276 myproject/templates/country.html:276
+#: myproject/templates/entry.html:160 myproject/templates/post.html:309
+msgid "About"
+msgstr ""
+
+#: myproject/templates/country.html:62
+#: myproject/templates/tags/innernavbar.html:38
+#: myproject/templates/tags/leftsidewall.html:40
+msgid "Countries"
+msgstr "Países"
+
+#: myproject/templates/country.html:295
+msgid "Log In To Comment"
+msgstr ""
+
+#: myproject/templates/entry.html:42
+msgid "Entry"
+msgstr ""
+
+#: myproject/templates/entry.html:91 myproject/templates/entry.html:169
+#: myproject/templates/tags/innernavbar.html:139
+msgid "Log In"
+msgstr ""
+
+#: myproject/templates/entry.html:156 myproject/templates/post.html:304
+#, fuzzy
+#| msgid "Latest Content"
+msgid "Post Comment"
+msgstr "Contenido más reciente"
+
+#: myproject/templates/index.html:65
+msgid "Hot Topics"
+msgstr ""
+
+#: myproject/templates/index.html:70
+#: myproject/templates/tags/entry-list.html:36
+msgid "Read More"
+msgstr ""
+
+#: myproject/templates/index.html:78
+msgid "Discover Our Forum"
+msgstr ""
+
+#: myproject/templates/index.html:81
+msgid "Read immigration stories, ask questions and share your information"
+msgstr ""
+
+#: myproject/templates/index.html:130
+msgid "Search By Content"
+msgstr ""
+
+#: myproject/templates/index.html:148
+msgid "Posts"
+msgstr "Publicaciones"
+
+#: myproject/templates/index.html:376
+msgid "Suggest Me A Random Article"
+msgstr ""
+
+#: myproject/templates/post.html:107 myproject/templates/post.html:141
+msgid "Last Update"
+msgstr ""
+
+#: myproject/templates/post.html:122 myproject/templates/post.html:146
+msgid "Bookmark"
+msgstr ""
+
+#: myproject/templates/post.html:133
+msgid "Bookmarked"
+msgstr ""
+
+#: myproject/templates/post.html:182 myproject/templates/tag.html:63
+#: myproject/templates/tags/rightside.html:76
+msgid "Tags"
+msgstr "Etiquetas"
+
+#: myproject/templates/post.html:208
+msgid "Share"
+msgstr ""
+
+#: myproject/templates/profile.html:40
+#: myproject/templates/tags/innernavbar.html:126
+msgid "Profile"
+msgstr ""
+
+#: myproject/templates/profile.html:95 myproject/templates/profile.html:252
+#: myproject/templates/settings.html:101
+msgid "Edit Profile"
+msgstr ""
+
+#: myproject/templates/profile.html:108
+#, fuzzy
+#| msgid "Countries"
+msgid "Entries"
+msgstr "Países"
+
+#: myproject/templates/profile.html:127 myproject/templates/profile.html:178
+msgid "See All"
+msgstr ""
+
+#: myproject/templates/profile.html:269
+msgid "Name"
+msgstr ""
+
+#: myproject/templates/profile.html:273
+msgid "Surname"
+msgstr ""
+
+#: myproject/templates/profile.html:276
+msgid "Profile Picture"
+msgstr ""
+
+#: myproject/templates/profile.html:279
+msgid "Browse"
+msgstr ""
+
+#: myproject/templates/profile.html:281
+msgid "File added"
+msgstr ""
+
+#: myproject/templates/profile.html:283
+msgid "Square optimized"
+msgstr ""
+
+#: myproject/templates/profile.html:285 myproject/templates/settings.html:120
+msgid "Update"
+msgstr ""
+
+#: myproject/templates/settings.html:40
+#: myproject/templates/tags/innernavbar.html:130
+msgid "Settings"
+msgstr ""
+
+#: myproject/templates/settings.html:70 myproject/templates/settings.html:109
+msgid "Username"
+msgstr ""
+
+#: myproject/templates/settings.html:71
+msgid "E-mail"
+msgstr ""
+
+#: myproject/templates/settings.html:72
+#, fuzzy
+#| msgid "Migration Categories"
+msgid "Creation date"
+msgstr "Categorías de migración"
+
+#: myproject/templates/settings.html:80
+msgid "Edit Settings"
+msgstr ""
+
+#: myproject/templates/settings.html:112
+msgid "Only characters and numbers"
+msgstr ""
+
+#: myproject/templates/settings.html:114
+msgid "Change E-Mail"
+msgstr ""
+
+#: myproject/templates/settings.html:117
+msgid "Change Password"
+msgstr ""
+
+#: myproject/templates/start-entry.html:67
+msgid "Is your entry related to any of our categories?"
+msgstr ""
+
+#: myproject/templates/start-entry.html:68
+#: myproject/templates/start-entry.html:95
+msgid "Unrelated"
+msgstr ""
+
+#: myproject/templates/start-entry.html:94
+msgid "Is your entry related to any of our countries?"
+msgstr ""
+
+#: myproject/templates/start-entry.html:121
+msgid "Heading"
+msgstr ""
+
+#: myproject/templates/start-entry.html:124
+msgid "Ask for help or tell about your story"
+msgstr ""
+
+#: myproject/templates/tags/footer.html:255
+msgid "Email Address"
+msgstr "Dirección de correo electrónico"
+
+#: myproject/templates/tags/footer.html:314
+msgid "Message"
+msgstr "Mensaje"
+
+#: myproject/templates/tags/innernavbar.html:92
+msgid "Migration Categories"
+msgstr "Categorías de migración"
+
+#: myproject/templates/tags/innernavbar.html:120
+msgid "MW Forum"
+msgstr ""
+
+#: myproject/templates/tags/innernavbar.html:128
+msgid "Bookmarked Posts"
+msgstr ""
+
+#: myproject/templates/tags/innernavbar.html:131
+msgid "Log Out"
+msgstr ""
+
+#: myproject/templates/tags/innernavbar.html:140
+msgid "Register"
+msgstr ""
+
+#: myproject/templates/tags/rightside.html:14
+msgid "Latest Content"
+msgstr "Contenido más reciente"

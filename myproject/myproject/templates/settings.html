@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load navbar %}
+{% load static %}
+{% load i18n %}
+
+{% get_available_languages as LANGUAGES %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info_list for LANGUAGES as languages %}
+
+{% block metatags %}
+<title>Settings | Migrate Wisely</title>
+<meta name="description" content="Seek migration opportunities based on their financial status, educational background, and some other specific conditions!">
+<meta name="keywords" content="migration, immigration, visa, citizenship, greencard, citizen, migrate, immigrate, immigrant">
+{% endblock metatags %}
+
+
+{% block content %}
+
+<body>
+
+    <!-- start page-wrapper -->
+    <div class="page-wrapper">
+
+        <!-- start preloader -->
+        <div class="preloader">
+            <div class="sk-folding-cube">
+                <div class="sk-cube1 sk-cube"></div>
+                <div class="sk-cube2 sk-cube"></div>
+                <div class="sk-cube4 sk-cube"></div>
+                <div class="sk-cube3 sk-cube"></div>
+            </div>
+        </div>
+        <!-- end preloader -->
+
+        {% InnerNavbarTag %}
+        <style>
+            .page-title .breadcrumb > li + li:before{color:#2b2e3a;}
+        </style>
+        <!-- start page-title -->
+        <section class="page-title page-title-revised" style="height:130px;background:#97daf7;">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-xs-12">
+                        <h2 style="font-weight:500;font-size:2rem;color:#2b2e3a;text-transform:none;">@{{profile.user}}</h2>
+                        <ol class="breadcrumb">
+                            <li><a style="color:#2b2e3a;" href="/">{% trans "Homepage" %}</a></li>
+                            <li style="color:#2b2e3a;">{% trans "Settings" %}</li>
+                            <li style="color:#2b2e3a;">@{{profile.user}}</li>
+                        </ol>
+                    </div>
+                </div> <!-- end row -->
+            </div> <!-- end container -->
+        </section>        
+        <!-- end page-title -->
+
+        <!-- start blog-single-section -->
+        <section class="blog-single-section blog-single-left-sidebar-section section-padding" style="padding:70px 0;">
+            <div class="container">
+                <div class="row" style="box-shadow: rgb(0 0 0 / 2%) 0px 1px 3px 0px, rgb(27 31 35 / 15%) 0px 0px 0px 1px;padding:2% 1% 0 1%;">
+                    <div class="col-md-2 col-sm-12">
+                        <div class="blog-sidebar">
+                            <div class="widget about-widget">
+                                <div class="img-holder">
+                                    {% if profile.profile_pic %}
+                                    <img src="/media/{{profile.profile_pic}}" alt style="width:100%;">
+                                    {% else %}
+                                    <img src="{{profile.default_pic}}" alt style="width:100%;">
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="blog-sidebar">
+                            <div class="widget about-widget">
+                                <h2>{{profile.name}} {{profile.surname}}</h2>
+                                <p style="color: #2b2e3a;">{% trans "Username" %}:&nbsp;&nbsp; @{{profile}}</p>
+                                <p style="color: #2b2e3a;">{% trans "E-mail" %}:&nbsp;&nbsp; {{profile.email}}</p>
+                                <p style="color: #2b2e3a;">{% trans "Creation date" %}:&nbsp;&nbsp; {{profile.date_created}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="blog-sidebar">
+                            <div class="widget about-widget">
+                                {% if profile.user.id == request.user.id %}
+                                <p style="text-align:right;"><a href="/edit-profile/" style="display: inline-flex;align-items: center;"  data-toggle="modal" data-target="#exampleModal"><i class="ti-settings"></i>&nbsp; {% trans "Edit Settings" %}</a></p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end container -->
+        </section>
+        <!-- end blog-single-section -->
+
+
+        
+        {% FooterTag %}
+
+    </div>
+    <!-- end of page-wrapper -->
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="box-shadow:none;border-radius:0;">
+                <div class="modal-header" style="padding:20px;">
+                <h5 class="modal-title" id="exampleModalLabel" style="font-size:22px;">{% trans "Edit Profile" %}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="padding:20px;">
+                    <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label for="recipient-name" class="col-form-label" style="font-weight:300;color: #2b2e3a;">{% trans "Username" %}:</label>
+                            <input type="text" name="username" class="form-control" id="recipient-name" style="border-radius:0;color:#666;height:50px;" value="{{profile.user.username}}" placeholder="{{profile.user.username}}">
+                        </div>
+                        <small>{% trans "Only characters and numbers" %}</small>
+                        <div class="form-group" style="margin-bottom:20px;margin-top:20px;">
+                            <a href="{% url 'app:sendChangeEmailCode' request.user.access_profile.encrypted_id.ekey %}"><p for="recipient-name" class="col-form-label" style="font-weight:300;color: #2b2e3a;">{% trans "Change E-Mail" %}</p></a>
+                        </div>
+                        <div class="form-group" style="margin-bottom:20px;">
+                            <a href="{% url 'app:sendChangePasswordCode' request.user.access_profile.encrypted_id.ekey %}"><p for="recipient-name" class="col-form-label" style="font-weight:300;color: #2b2e3a;">{% trans "Change Password" %}</p></a>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="submit" name="updateSettings" class="btn btn-info" style="color:white;border-radius:0;">{% trans "Update" %}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+<script>
+function filterField(e) {
+  let t = e.target;
+  let badValues = /[^\w\d]/gi;
+  t.value = t.value.replace(badValues, '');
+}
+let inputElement = document.getElementById('recipient-name');
+inputElement.addEventListener('input', filterField);
+</script>
+
+{% endblock content %}

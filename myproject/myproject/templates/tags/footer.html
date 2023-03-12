@@ -1,0 +1,308 @@
+{% load static %}
+{% load i18n %}
+
+{% get_available_languages as LANGUAGES %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info_list for LANGUAGES as languages %}
+
+<style>
+    .site-footer .lower-footer .social-icons ul a{
+        color:white;
+    }
+    @media only screen and (max-width: 600px) {
+        .footer-mg-top-rev {
+            margin-top: 5% !important;
+            margin-bottom: 45px !important;
+        }
+        }
+</style>
+
+<!-- start site-footer -->
+<footer class="site-footer" style="background-color:#F27843;">
+    <div class="upper-footer" style="padding:50px 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col col-lg-3 col-md-3 col-sm-6">
+                    <div class="widget about-widget">
+                        <div class="logo widget-title">
+                            <img src="{% static 'assets/images/logo.png' %}" alt="Migrate Wisely">
+                        </div>
+                        {% if LANGUAGE_CODE == "ar" %}
+                        <p style="color:white;text-align:right;">اكتشف فرص الهجرة التي تناسب ظروفك</p>
+                        {% elif LANGUAGE_CODE == "es" %}
+                        <p style="color:white;">Descubra oportunidades de inmigración que se ajusten a sus circunstancias.</p>
+                        {% elif LANGUAGE_CODE == "fa" %}
+                        <p style="color:white;text-align:right;">فرصت های مهاجرت متناسب با شرایط شما را کشف کنید</p>
+                        {% elif LANGUAGE_CODE == "fr" %}
+                        <p style="color:white;">Découvrez les opportunités d'immigration qui correspondent à votre situation.</p>
+                        {% elif LANGUAGE_CODE == "tr" %}
+                        <p style="color:white;">Koşullarınıza uyan göçmenlik fırsatlarını keşfedin.</p>
+                        {% elif LANGUAGE_CODE == "hi" %}
+                        <p style="color:white;">अपनी परिस्थितियों के अनुकूल आव्रजन अवसरों की खोज करें.</p>
+                        {% elif LANGUAGE_CODE == "vi" %}
+                        <p style="color:white;">Khám phá các cơ hội nhập cư phù hợp với hoàn cảnh của bạn.</p>
+                        {% elif LANGUAGE_CODE == "ur" %}
+                        <p style="color:white;text-align:right;">امیگریشن کے مواقع دریافت کریں جو آپ کے حالات کے مطابق ہوں۔</p>
+                        {% else %}
+                        <p style="color:white;">Discover immigration opportunities that fit your circumstances.</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col col-lg-3 col-md-3 col-sm-6" style="border-left: 1px solid black;min-height: 300px;">
+                    <div class="widget link-widget">
+                        <div class="widget-title">
+                            {% if LANGUAGE_CODE == "ar" %}
+                            <h3 style="color:black;text-align:right;">الفئات الشعبية</h3>
+                            {% elif LANGUAGE_CODE == "es" %}
+                            <h3 style="color:black;">Categorías Populares</h3>
+                            {% elif LANGUAGE_CODE == "fa" %}
+                            <h3 style="color:black;text-align:right;">دسته بندی های محبوب</h3>
+                            {% elif LANGUAGE_CODE == "fr" %}
+                            <h3 style="color:black;">Catégories populaires</h3>
+                            {% elif LANGUAGE_CODE == "tr" %}
+                            <h3 style="color:black;">Popüler Kategoriler</h3>
+                            {% elif LANGUAGE_CODE == "hi" %}
+                            <h3 style="color:black;">लोकप्रिय श्रेणियां</h3>
+                            {% elif LANGUAGE_CODE == "vi" %}
+                            <h3 style="color:black;">Danh mục phổ biến</h3>
+                            {% elif LANGUAGE_CODE == "ur" %}
+                            <h3 style="color:black;text-align:right;">مقبول زمرے</h3>
+                            {% else %}
+                            <h3 style="color:black;">Popular Categories</h3>
+                            {% endif %}
+                        </div>
+                        <ul style="width:100%;">
+                            {% for item in popular_categories %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                <li style="text-align:right;"><a class="hvr-underline-from-left" style="color:white;" href="/category/{{item.url_name}}">{{item.nameAr}}</a></li>
+                                {% elif LANGUAGE_CODE == "es" %}
+                                <li><a class="hvr-underline-from-left" style="color:white;" href="/category/{{item.url_name}}">{{item.nameEs}}</a></li>
+                                {% elif LANGUAGE_CODE == "fa" %}
+                                <li style="text-align:right;"><a class="hvr-underline-from-left" style="color:white;" href="/category/{{item.url_name}}">{{item.nameFa}}</a></li>
+                                {% elif LANGUAGE_CODE == "fr" %}
+                                <li><a class="hvr-underline-from-left" style="color:white;" href="/category/{{item.url_name}}">{{item.nameFr}}</a></li>
+                                {% elif LANGUAGE_CODE == "tr" %}
+                                <li><a class="hvr-underline-from-left" style="color:white;" href="/category/{{item.url_name}}">{{item.nameTr}}</a></li>
+                                {% elif LANGUAGE_CODE == "hi" %}
+                                <li><a class="hvr-underline-from-left" style="color:white;" href="/category/{{item.url_name}}">{{item.nameHi}}</a></li>
+                                {% elif LANGUAGE_CODE == "vi" %}
+                                <li><a class="hvr-underline-from-left" style="color:white;" href="/category/{{item.url_name}}">{{item.nameVi}}</a></li>
+                                {% elif LANGUAGE_CODE == "ur" %}
+                                <li style="text-align:right;"><a class="hvr-underline-from-left" style="color:white;" href="/category/{{item.url_name}}">{{item.nameUr}}</a></li>
+                                {% else %}
+                                <li><a class="hvr-underline-from-left" style="color:white;" href="/category/{{item.url_name}}">{{item.name}}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="col col-lg-3 col-md-3 col-sm-6" style="border-left: 1px solid black;min-height: 300px;">
+                    <div class="widget link-widget">
+                        <div class="widget-title">
+                            {% if LANGUAGE_CODE == "ar" %}
+                            <h3 style="color:black;text-align:right;">الكلمات الشعبية</h3>
+                            {% elif LANGUAGE_CODE == "es" %}
+                            <h3 style="color:black;">Etiquetas Populares</h3>
+                            {% elif LANGUAGE_CODE == "fa" %}
+                            <h3 style="color:black;text-align:right;">برچسب های محبوب</h3>
+                            {% elif LANGUAGE_CODE == "fr" %}
+                            <h3 style="color:black;">Tags Populaires</h3>
+                            {% elif LANGUAGE_CODE == "tr" %}
+                            <h3 style="color:black;">Popüler Etiketler</h3>
+                            {% elif LANGUAGE_CODE == "hi" %}
+                            <h3 style="color:black;">प्रसिद्ध टग्स</h3>
+                            {% elif LANGUAGE_CODE == "vi" %}
+                            <h3 style="color:black;">Thẻ phổ biến</h3>
+                            {% elif LANGUAGE_CODE == "ur" %}
+                            <h3 style="color:black;text-align:right;">مقبول ٹیگز</h3>
+                            {% else %}
+                            <h3 style="color:black;">Popular Tags</h3>
+                            {% endif %}
+                        </div>
+                        <ul style="width:100%;">
+                            {% for item in popular_tags %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                <li style="text-align:right;"><a class="hvr-underline-from-left" style="color:white;" href="/tag/{{item.url_name}}">{{item.nameAr}}#</a></li>
+                                {% elif LANGUAGE_CODE == "es" %}
+                                <li><a class="hvr-underline-from-left" style="color:white;" href="/tag/{{item.url_name}}">#{{item.nameEs}}</a></li>
+                                {% elif LANGUAGE_CODE == "fa" %}
+                                <li style="text-align:right;"><a class="hvr-underline-from-left" style="color:white;" href="/tag/{{item.url_name}}">{{item.nameFa}}#</a></li>
+                                {% elif LANGUAGE_CODE == "fr" %}
+                                <li><a class="hvr-underline-from-left" style="color:white;" href="/tag/{{item.url_name}}">#{{item.nameFr}}</a></li>
+                                {% elif LANGUAGE_CODE == "tr" %}
+                                <li><a class="hvr-underline-from-left" style="color:white;" href="/tag/{{item.url_name}}">#{{item.nameTr}}</a></li>
+                                {% elif LANGUAGE_CODE == "hi" %}
+                                <li><a class="hvr-underline-from-left" style="color:white;" href="/tag/{{item.url_name}}">#{{item.nameHi}}</a></li>
+                                {% elif LANGUAGE_CODE == "vi" %}
+                                <li><a class="hvr-underline-from-left" style="color:white;" href="/tag/{{item.url_name}}">#{{item.nameVi}}</a></li>
+                                {% elif LANGUAGE_CODE == "ur" %}
+                                <li style="text-align:right;"><a class="hvr-underline-from-left" style="color:white;" href="/tag/{{item.url_name}}">{{item.nameUr}}#</a></li>
+                                {% else %}
+                                <li><a class="hvr-underline-from-left" style="color:white;" href="/tag/{{item.url_name}}">#{{item.name}}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="col col-lg-3 col-md-3 col-sm-6" style="border-left: 1px solid black;min-height: 300px;">
+                    <div class="widget link-widget">
+                        <div class="widget-title">
+                            <h3 style="color:black;">Our Policies</h3>
+                        </div>
+                        <ul style="width:100%;">
+                            <li><a class="hvr-underline-from-left" style="color:white;" href="{% url 'app:privacy-policy' %}">Privacy Policy</a></li>
+                            <li><a class="hvr-underline-from-left" style="color:white;" href="{% url 'app:user-agreement-policy' %}">User Agreement</a></li>
+                            <li><a class="hvr-underline-from-left" style="color:white;" href="{% url 'app:content-policy' %}">Content Policy</a></li>
+                            <li><a class="hvr-underline-from-left" style="color:white;" href="{% url 'app:cookie-policy' %}">Cookie Policy</a></li>
+                            <li><a class="hvr-underline-from-left" style="color:white;" href="{% url 'app:contact' %}">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                {% comment %} <div class="col col-lg-3 col-md-3 col-sm-6">
+                    <div class="widget contact-widget service-link-widget">
+                        <div class="widget-title">
+                            <h3 style="color:black;">Contact Info</h3>
+                        </div>
+                        <ul>
+                            <li>Phone: ++87655285654 </li>
+                            <li>Email: jhair@demo.com</li>
+                            <li>Office Time: 10AM- 5PM</li>
+                        </ul>
+                    </div>
+                </div> {% endcomment %}
+            </div>
+            <div class="row" style="border-top:1px solid black;margin-top:3%;">
+                <div class="col col-lg-6 col-md-6 col-sm-6 footer-mg-top-rev" style="margin-top:2%;">
+                    <div class="widget newsletter-widget">
+                        <div class="widget-title" style="margin-bottom:20px;">
+                            {% if LANGUAGE_CODE == "ar" %}
+                            <h3 style="color:black;text-align:right;">اشترك معنا</h3>
+                            {% elif LANGUAGE_CODE == "es" %}
+                            <h3 style="color:black;">Suscríbete</h3>
+                            {% elif LANGUAGE_CODE == "fa" %}
+                            <h3 style="color:black;text-align:right;">ما را مشترک کنید</h3>
+                            {% elif LANGUAGE_CODE == "fr" %}
+                            <h3 style="color:black;">Abonnez-nous</h3>
+                            {% elif LANGUAGE_CODE == "tr" %}
+                            <h3 style="color:black;">Abone Ol</h3>
+                            {% elif LANGUAGE_CODE == "hi" %}
+                            <h3 style="color:black;">हमें सब्सक्राइब करें</h3>
+                            {% elif LANGUAGE_CODE == "vi" %}
+                            <h3 style="color:black;">đăng ký chúng tôi</h3>
+                            {% elif LANGUAGE_CODE == "ur" %}
+                            <h3 style="color:black;text-align:right;">ہمیں سبسکرائب کریں</h3>
+                            {% else %}
+                            <h3 style="color:black;">Subscribe</h3>
+                            {% endif %}
+                        </div>
+                        {% if LANGUAGE_CODE == "ar" %}
+                        <p style="color:white;text-align:right;">سيتم إخطارك عند إضافة محتوى جديد</p>
+                        {% elif LANGUAGE_CODE == "es" %}
+                        <p style="color:white;">Se le notificará cuando se agregue un nuevo contenido.</p>
+                        {% elif LANGUAGE_CODE == "fa" %}
+                        <p style="color:white;text-align:right;">در صورت اضافه شدن محتوای جدید به شما اطلاع داده خواهد شد</p>
+                        {% elif LANGUAGE_CODE == "fr" %}
+                        <p style="color:white;">Vous serez averti lorsqu'un nouveau contenu sera ajouté.</p>
+                        {% elif LANGUAGE_CODE == "tr" %}
+                        <p style="color:white;">Yeni bir içerik eklendiğinde bilgilendirileceksiniz.</p>
+                        {% elif LANGUAGE_CODE == "hi" %}
+                        <p style="color:white;">नई सामग्री जोड़े जाने पर आपको सूचित किया जाएगा.</p>
+                        {% elif LANGUAGE_CODE == "vi" %}
+                        <p style="color:white;">Bạn sẽ được thông báo khi một nội dung mới được thêm vào.</p>
+                        {% elif LANGUAGE_CODE == "ur" %}
+                        <p style="color:white;text-align:right;">نیا مواد شامل ہونے پر آپ کو مطلع کیا جائے گا۔</p>
+                        {% else %}
+                        <p style="color:white;">You will be notified when a new content is added.</p>
+                        {% endif %}
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="input-1">
+                                <input type="email" name="email" autocomplete="off" class="form-control" placeholder="{% trans "Email Address" %} *" required style="background-color:white;"> 
+                            </div>
+                            <div class="submit clearfix">
+                                <button type="submit" name="footerSubscribe"><i class="ti-email"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col col-lg-6 col-md-6 col-sm-6 footer-mg-top-rev" style="margin-top:2%;">
+                    <div class="widget newsletter-widget">
+                        {% if LANGUAGE_CODE == "ar" %}
+                        <div class="widget-title" style="margin-bottom:20px;">
+                            <h3 style="color:black;text-align:right;">أود الحصول على معلومات حول</h3>
+                        </div>
+                        <p style="color:white;text-align:right;">أخبرنا إذا كان هناك محتوى مفقود حول الهجرة</p>
+                        {% elif LANGUAGE_CODE == "es" %}
+                        <div class="widget-title" style="margin-bottom:20px;">
+                            <h3 style="color:black;">Me gustaría ser informada(o) sobre...</h3>
+                        </div>
+                        <p style="color:white;">Dinos si te falta algún contenido sobre inmigración.</p>
+                        {% elif LANGUAGE_CODE == "fa" %}
+                        <div class="widget-title" style="margin-bottom:20px;">
+                            <h3 style="color:black;text-align:right;">من می خواهم در مورد آن مطلع شوم...</h3>
+                        </div>
+                        <p style="color:white;text-align:right;">اگر محتوایی در مورد مهاجرت دارید به ما بگویید</p>
+                        {% elif LANGUAGE_CODE == "fr" %}
+                        <div class="widget-title" style="margin-bottom:20px;">
+                            <h3 style="color:black;">Je souhaite être informé de...</h3>
+                        </div>
+                        <p style="color:white;">Dites-nous s'il vous manque un contenu sur l'immigration.</p>
+                        {% elif LANGUAGE_CODE == "tr" %}
+                        <div class="widget-title" style="margin-bottom:20px;">
+                            <h3 style="color:black;">Hakkında Bilgilendirilmek İstiyorum...</h3>
+                        </div>
+                        <p style="color:white;">Göçmenlikle ilgili eksik bir içerik varsa bize bildirin.</p>
+                        {% elif LANGUAGE_CODE == "hi" %}
+                        <div class="widget-title" style="margin-bottom:20px;">
+                            <h3 style="color:black;">मैं इसके बारे में सूचित किया जाना चाहता/चाहती हूं...</h3>
+                        </div>
+                        <p style="color:white;">हमें बताएं कि क्या आपके पास आप्रवास के बारे में कोई सामग्री गुम है.</p>
+                        {% elif LANGUAGE_CODE == "vi" %}
+                        <div class="widget-title" style="margin-bottom:20px;">
+                            <h3 style="color:black;">Tôi muốn được thông báo về...</h3>
+                        </div>
+                        <p style="color:white;">Hãy cho chúng tôi biết nếu bạn còn thiếu nội dung về nhập cư.</p>
+                        {% elif LANGUAGE_CODE == "ur" %}
+                        <div class="widget-title" style="margin-bottom:20px;">
+                            <h3 style="color:black;text-align:right;">میں اس بارے میں مطلع کرنا چاہتا ہوں۔</h3>
+                        </div>
+                        <p style="color:white;text-align:right;">اگر آپ کے پاس امیگریشن کے بارے میں کوئی گمشدہ مواد ہے تو ہمیں بتائیں</p>
+                        {% else %}
+                        <div class="widget-title" style="margin-bottom:20px;">
+                            <h3 style="color:black;">I'd like to be informed about...</h3>
+                        </div>
+                        <p style="color:white;">Tell us if you there is a missing content about migration.</p>
+                        {% endif %}
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="input-1">
+                                <input type="text" class="form-control" name="message" autocomplete="off" placeholder="{% trans "Message" %} *" required style="background-color:white;"> 
+                            </div>
+                            <div class="submit clearfix">
+                                <button type="submit" name="footerMessage"><i class="ti-arrow-right"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end container -->
+    </div>
+    <div class="lower-footer" style="background:black;">
+        <div class="container">
+            <div class="row" style="padding: 30px 0;">
+                <div class="separator"></div>
+                <div class="col col-xs-12">
+                    <p class="copyright" style="color:white;">Copyright &copy; 2022 MigrateWisely. All rights reserved.</p>
+                    <div class="social-icons">
+                        <ul>
+                            <li><a href="#"><i class="ti-facebook" style="color:white;"></i></a></li>
+                            <li><a href="#"><i class="ti-twitter-alt" style="color:white;"></i></a></li>
+                            <li><a href="#"><i class="ti-instagram" style="color:white;"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- end site-footer -->

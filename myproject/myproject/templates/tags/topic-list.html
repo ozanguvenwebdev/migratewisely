@@ -1,0 +1,21 @@
+{% load navbar %}
+{% load i18n %}
+
+{% get_available_languages as LANGUAGES %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info_list for LANGUAGES as languages %}
+
+
+{% for topic in hotTopics %}
+    {% if forloop.last %}
+    <div class="post format-standard" style="margin-bottom: 7%;border-bottom: 1px solid;padding-bottom:2%;" hx-get="{% url 'app:hotTopics' %}?page={{ page_obj.number|add:1 }}" hx-trigger="revealed" hx-swap="afterend" hx-target="this">
+    {% else %}
+    <div class="post format-standard" style="margin-bottom: 7%;border-bottom: 1px solid;padding-bottom:2%;">
+    {% endif %}    
+        <ul class="entry-meta" style="margin: 15px 0;">
+            <li>{{topic.date_created}}</li>
+        </ul>
+        <h3 style="margin:0;font-weight:500;font-size: 2rem;">{{topic.heading}}</h3>
+        <p>{{topic.message|safe}}</p>
+    </div>
+{% endfor %}

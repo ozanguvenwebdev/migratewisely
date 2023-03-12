@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load navbar %}
+{% load static %}
+{% load i18n %}
+
+{% get_available_languages as LANGUAGES %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info_list for LANGUAGES as languages %}
+
+{% block content %}
+
+<body>
+
+    <!-- start page-wrapper -->
+    <div class="page-wrapper">
+
+        <!-- start preloader -->
+        <div class="preloader">
+            <div class="sk-folding-cube">
+                <div class="sk-cube1 sk-cube"></div>
+                <div class="sk-cube2 sk-cube"></div>
+                <div class="sk-cube4 sk-cube"></div>
+                <div class="sk-cube3 sk-cube"></div>
+            </div>
+        </div>
+        <!-- end preloader -->
+
+        {% InnerNavbarTag %}
+        <style>
+            .page-title .breadcrumb > li + li:before{color:#2b2e3a;}
+        </style>
+        <!-- start page-title -->
+        <section class="page-title page-title-revised" style="height:130px;background:#97daf7;">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-xs-12">
+                        <h2 style="font-weight:500;font-size:2rem;color:#2b2e3a;text-transform:none;">@{{profile.user}}</h2>
+                        <ol class="breadcrumb">
+                            <li><a style="color:#2b2e3a;" href="/">Home</a></li>
+                            <li style="color:#2b2e3a;">Profile</li>
+                            <li style="color:#2b2e3a;">@{{profile.user}}</li>
+                        </ol>
+                    </div>
+                </div> <!-- end row -->
+            </div> <!-- end container -->
+        </section>        
+        <!-- end page-title -->
+
+        <!-- start blog-single-section -->
+        <section class="blog-single-section blog-single-left-sidebar-section section-padding" style="padding:70px 0;">
+            <div class="container">
+                <div class="row" style="box-shadow: rgb(0 0 0 / 2%) 0px 1px 3px 0px, rgb(27 31 35 / 15%) 0px 0px 0px 1px;padding:2% 1% 0 1%;">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="blog-sidebar">
+                            <div class="widget about-widget">
+                                <div class="modal-body" style="padding:20px;">
+                                    <h4>Please enter the code we've sent to your e-mail.  {{uniqueExpireCode.encrypted_id.ekey}}</h4>
+                                    <form method="POST" enctype="multipart/form-data" action="/send-refresh-mail-form/">{% csrf_token %}
+                                        <input type="hidden" name="profile_id" id="profile_id" value={{request.user.access_profile.id}}>
+                                        <div class="form-group" style="margin-bottom:0;">
+                                            <label for="recipient-name" class="col-form-label" style="font-weight:300;color: #2b2e3a;">Code:</label>
+                                            <input type="text" name="email-code" class="form-control" id="recipient-name" style="border-radius:0;color:#666;height:50px;" required>
+                                        </div>
+                                        <div class="form-group" style="margin-bottom:0;">
+                                            <label for="recipient-name" class="col-form-label" style="font-weight:300;color: #2b2e3a;">New E-Mail:</label>
+                                            <input type="email" name="new-email" class="form-control" id="recipient-name" style="border-radius:0;color:#666;height:50px;" required>
+                                        </div>
+                                        <div class="modal-footer" style="text-align:left;padding-left:0;">
+                                        <button type="submit" name="updateEmail" class="btn btn-info" style="color:white;border-radius:0;">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end container -->
+        </section>
+        <!-- end blog-single-section -->
+
+
+        
+        {% FooterTag %}
+
+    </div>
+    <!-- end of page-wrapper -->
+
+
+
+</body>
+
+
+{% endblock content %}

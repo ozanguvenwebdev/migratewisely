@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load navbar %}
+{% load i18n %}
+
+{% get_available_languages as LANGUAGES %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info_list for LANGUAGES as languages %}
+
+{% block metatags %}
+<title>Start Entry | Migrate Wisely</title>
+<meta name="description" content="Seek migration opportunities based on their financial status, educational background, and some other specific conditions!">
+<meta name="keywords" content="migration, immigration, visa, citizenship, greencard, citizen, migrate, immigrate, immigrant">
+{% endblock metatags %}
+
+
+{% block content %}
+
+
+<body>
+    <!-- start page-wrapper -->
+    <div class="page-wrapper">
+
+        <!-- start preloader -->
+        <div class="preloader">
+            <div class="sk-folding-cube">
+                <div class="sk-cube1 sk-cube"></div>
+                <div class="sk-cube2 sk-cube"></div>
+                <div class="sk-cube4 sk-cube"></div>
+                <div class="sk-cube3 sk-cube"></div>
+            </div>
+        </div>
+        <!-- end preloader -->
+
+        {% InnerNavbarTag %}
+
+        <style>
+            .page-title .breadcrumb > li + li:before{color:#2b2e3a;}
+        </style>
+        
+
+        <!-- start page-title -->
+        <section class="page-title" style="height:130px;background:#97daf7;">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-xs-12">
+                        <h2 style="font-weight:500;font-size:2rem;color:#2b2e3a;">{% trans "Start Entry" %}</h2>
+                        <ol class="breadcrumb">
+                            <li><a href="/" style="color:#2b2e3a;">{% trans "Homepage" %}</a></li>
+                            <li style="color:#2b2e3a;">{% trans "Start Entry" %}</li>
+                        </ol>
+                    </div>
+                </div> <!-- end row -->
+            </div> <!-- end container -->
+        </section>        
+        <!-- end page-title -->
+
+
+        <!-- start blog-single-section -->
+        <section class="blog-single-section blog-single-left-sidebar-section section-padding" style="padding-top:80px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-md-9 col-md-push-3">
+                        <div class="blog-content">
+
+                            <div class="comments-area" style="margin-top:0;">
+                                <div class="comment-respond" style="margin-top:0;">
+                                    <h2 class="comment-reply-title" style="font-size:2rem;">{% trans "Start Entry" %}</h2>
+                                    <form method="POST" id="commentform" class="comment-form">
+                                        {% csrf_token %}
+                                        <div class="form-inputs">
+                                            <div class="col-md-6 col-sm-12" style="padding-left:0;">
+                                                <select id="category" name="category" required style="width:100%;color:#666;background-color: #f8f8f8;padding:4%;margin: 0 2% 4% 0;border: 0;-webkit-appearance:none;-moz-appearance: none;">
+                                                    <option value="" disabled selected>{% trans "Is your entry related to any of our categories?" %}</option>
+                                                    <option value="">{% trans "Unrelated" %}</option>
+                                                    {% for category in categories %}
+                                                        {% if LANGUAGE_CODE == "ar" %}
+                                                        <option value="{{category.name}}">{{category.nameAr}}</option>
+                                                        {% elif LANGUAGE_CODE == "fa" %}
+                                                        <option value="{{category.name}}">{{category.nameFa}}</option>
+                                                        {% elif LANGUAGE_CODE == "es" %}
+                                                        <option value="{{category.name}}">{{category.nameEs}}</option>
+                                                        {% elif LANGUAGE_CODE == "fr" %}
+                                                        <option value="{{category.name}}">{{category.nameFr}}</option>
+                                                        {% elif LANGUAGE_CODE == "tr" %}
+                                                        <option value="{{category.name}}">{{category.nameTr}}</option>
+                                                        {% elif LANGUAGE_CODE == "hi" %}
+                                                        <option value="{{category.name}}">{{category.nameHi}}</option>
+                                                        {% elif LANGUAGE_CODE == "vi" %}
+                                                        <option value="{{category.name}}">{{category.nameVi}}</option>
+                                                        {% elif LANGUAGE_CODE == "ur" %}
+                                                        <option value="{{category.name}}">{{category.nameUr}}</option>
+                                                        {% else %}
+                                                        <option value="{{category.name}}">{{category.name}}</option>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12" style="padding:0;">
+                                                <select id="country" name="country" required style="width:100%;color:#666;background-color: #f8f8f8;padding:4%;margin: 0 0 4% 0;border: 0;-webkit-appearance:none;-moz-appearance: none;">
+                                                    <option value="" disabled selected>{% trans "Is your entry related to any of our countries?" %}</option>
+                                                    <option value="">{% trans "Unrelated" %}</option>
+                                                    {% for country in countries %}
+                                                        {% if LANGUAGE_CODE == "ar" %}
+                                                        <option value="{{country.name}}">{{country.nameAr}}</option>
+                                                        {% elif LANGUAGE_CODE == "fa" %}
+                                                        <option value="{{country.name}}">{{country.nameFa}}</option>
+                                                        {% elif LANGUAGE_CODE == "es" %}
+                                                        <option value="{{country.name}}">{{country.nameEs}}</option>
+                                                        {% elif LANGUAGE_CODE == "fr" %}
+                                                        <option value="{{country.name}}">{{country.nameFr}}</option>
+                                                        {% elif LANGUAGE_CODE == "tr" %}
+                                                        <option value="{{country.name}}">{{country.nameTr}}</option>
+                                                        {% elif LANGUAGE_CODE == "hi" %}
+                                                        <option value="{{country.name}}">{{country.nameHi}}</option>
+                                                        {% elif LANGUAGE_CODE == "vi" %}
+                                                        <option value="{{country.name}}">{{country.nameVi}}</option>
+                                                        {% elif LANGUAGE_CODE == "ur" %}
+                                                        <option value="{{country.name}}">{{country.nameUr}}</option>
+                                                        {% else %}
+                                                        <option value="{{country.name}}">{{country.name}}</option>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-inputs">
+                                            <input placeholder="{% trans "Heading" %}" type="text" name="heading" autocomplete="off" required>
+                                        </div>
+                                        <div class="form-textarea">
+                                            <textarea id="comment" name="message" placeholder="{% trans 'Ask for help or tell about your story' %}..." autocomplete="off" required></textarea>
+                                        </div>
+                                        <div class="form-submit">
+                                            <input id="submit" value="{% trans "Submit" %}" type="submit" style="background-color:#97daf7;">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div> <!-- end comments-area -->
+                        </div>
+                    </div>
+                    {% LeftSideTag %}                  
+                </div>
+            </div> <!-- end container -->
+        </section>
+        <!-- end blog-single-section -->
+
+        {% FooterTag %}
+
+    </div>
+    <!-- end of page-wrapper -->
+
+
+</body>
+
+{% endblock content %}

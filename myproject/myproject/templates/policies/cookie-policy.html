@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load navbar %}
+{% load static %}
+{% load i18n %}
+
+{% get_available_languages as LANGUAGES %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info_list for LANGUAGES as languages %}
+
+{% block content %}
+
+<body>
+    <!-- start page-wrapper -->
+    <div class="page-wrapper">
+
+        <!-- start preloader -->
+        <div class="preloader">
+            <div class="sk-folding-cube">
+                <div class="sk-cube1 sk-cube"></div>
+                <div class="sk-cube2 sk-cube"></div>
+                <div class="sk-cube4 sk-cube"></div>
+                <div class="sk-cube3 sk-cube"></div>
+            </div>
+        </div>
+        <!-- end preloader -->
+        
+
+        {% InnerNavbarTag %}
+
+        <style>
+            .about-section-s2 .img-holder:before {
+                background: none
+            }
+        </style>
+
+        <!-- start page-title -->
+        <section class="page-title" style="height:130px;background:#F27843;">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-xs-12">
+                        <h2 style="font-weight:500;font-size:2rem;">Cookie Policy</h2>
+                        <ol class="breadcrumb">
+                            <li class="hvr-underline-from-right"><a href="/" style="color:white;">Home</a></li>
+                            <li>Cookie Policy</li>
+                        </ol>
+                    </div>
+                </div> <!-- end row -->
+            </div> <!-- end container -->
+        </section>        
+        <!-- end page-title -->
+
+
+        <!-- start blog-pg-section -->
+        <section class="blog-pg-section  blog-pg-fullwidth section-padding" style="padding-top:50px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-md-10 col-md-offset-1">
+                        <div class="blog-content">
+                            <div class="post format-standard">
+                                <p>{{policy.text|safe}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end container -->
+        </section>
+        <!-- end blog-pg-section -->
+
+        {% FooterTag %}
+
+    </div>
+    <!-- end of page-wrapper -->
+
+</body>
+
+{% endblock content %}

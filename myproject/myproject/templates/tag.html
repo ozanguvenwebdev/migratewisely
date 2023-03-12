@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load navbar %}
+{% load i18n %}
+
+{% get_available_languages as LANGUAGES %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info_list for LANGUAGES as languages %}
+
+{% block metatags %}
+    {% if LANGUAGE_CODE == "ar" %}
+        <title>{{tag.nameAr}} | Migrate Wisely</title>
+        <meta name="description" content="{{tag.descriptionAr}}">
+        <meta name="keywords" content="{{tag.keywordsAr}}">
+    {% elif LANGUAGE_CODE == "es" %}
+        <title>{{tag.nameEs}} | Migrate Wisely</title>
+        <meta name="description" content="{{tag.descriptionEs}}">
+        <meta name="keywords" content="{{tag.keywordsEs}}">
+    {% elif LANGUAGE_CODE == "fr" %}
+        <title>{{tag.nameFr}} | Migrate Wisely</title>
+        <meta name="description" content="{{tag.descriptionFr}}">
+        <meta name="keywords" content="{{tag.keywordsFr}}">
+    {% elif LANGUAGE_CODE == "tr" %}
+        <title>{{tag.nameTr}} | Migrate Wisely</title>
+        <meta name="description" content="{{tag.descriptionTr}}">
+        <meta name="keywords" content="{{tag.keywordsTr}}">
+    {% elif LANGUAGE_CODE == "hi" %}
+        <title>{{tag.nameHi}} | Migrate Wisely</title>
+        <meta name="description" content="{{tag.descriptionHi}}">
+        <meta name="keywords" content="{{tag.keywordsHi}}">
+    {% elif LANGUAGE_CODE == "vi" %}
+        <title>{{tag.nameVi}} | Migrate Wisely</title>
+        <meta name="description" content="{{tag.descriptionVi}}">
+        <meta name="keywords" content="{{tag.keywordsVi}}">
+    {% elif LANGUAGE_CODE == "fa" %}
+        <title>{{tag.nameFa}} | Migrate Wisely</title>
+        <meta name="description" content="{{tag.descriptionFa}}">
+        <meta name="keywords" content="{{tag.keywordsFa}}">
+    {% elif LANGUAGE_CODE == "ur" %}
+        <title>{{tag.nameUr}} | Migrate Wisely</title>
+        <meta name="description" content="{{tag.descriptionUr}}">
+        <meta name="keywords" content="{{tag.keywordsUr}}">
+    {% else %}
+        <title>{{tag.name}} | Migrate Wisely</title>
+        <meta name="description" content="{{tag.description}}">
+        <meta name="keywords" content="{{tag.keywords}}">
+    {% endif %}
+{% endblock metatags %}
+
+
+
+{% block content %}
+
+<body>
+
+    <!-- start page-wrapper -->
+    <div class="page-wrapper">
+
+        <!-- start preloader -->
+        <div class="preloader">
+            <div class="sk-folding-cube">
+                <div class="sk-cube1 sk-cube"></div>
+                <div class="sk-cube2 sk-cube"></div>
+                <div class="sk-cube4 sk-cube"></div>
+                <div class="sk-cube3 sk-cube"></div>
+            </div>
+        </div>
+        <!-- end preloader -->
+
+        {% InnerNavbarTag %}
+
+        <style>
+            .page-title-revised{
+            background: url({% static 'assets/images/blogdetail.jpg' %}) center center/cover no-repeat local;
+            }
+            
+        </style>
+
+        <!-- start page-title -->
+        <section class="page-title page-title-revised" style="height:130px;background:#F27843;">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-xs-12">
+                        {% if LANGUAGE_CODE == "ar" %}
+                        <h2 style="font-weight:500;font-size:2rem;">{{tag.nameAr}}#</h2>
+                        {% elif LANGUAGE_CODE == "es" %}
+                        <h2 style="font-weight:500;font-size:2rem;">#{{tag.nameEs}}</h2>
+                        {% elif LANGUAGE_CODE == "fa" %}
+                        <h2 style="font-weight:500;font-size:2rem;">{{tag.nameFa}}#</h2>
+                        {% elif LANGUAGE_CODE == "fr" %}
+                        <h2 style="font-weight:500;font-size:2rem;">#{{tag.nameFr}}</h2>
+                        {% elif LANGUAGE_CODE == "tr" %}
+                        <h2 style="font-weight:500;font-size:2rem;">#{{tag.nameTr}}</h2>
+                        {% elif LANGUAGE_CODE == "hi" %}
+                        <h2 style="font-weight:500;font-size:2rem;">#{{tag.nameHi}}</h2>
+                        {% elif LANGUAGE_CODE == "vi" %}
+                        <h2 style="font-weight:500;font-size:2rem;">#{{tag.nameVi}}</h2>
+                        {% elif LANGUAGE_CODE == "ur" %}
+                        <h2 style="font-weight:500;font-size:2rem;">{{tag.nameUr}}#</h2>
+                        {% else %}
+                        <h2 style="font-weight:500;font-size:2rem;">#{{tag.name}}</h2>
+                        {% endif %}
+                        <ol class="breadcrumb mobil-baslik-display-none">
+                            <li><a style="color:white;" href="/">{% trans "Homepage" %}</a></li>
+                            <li>{% trans "Tags" %}</li>
+                            {% if LANGUAGE_CODE == "ar" %}
+                            <li>{{tag.nameAr}}</li>
+                            {% elif LANGUAGE_CODE == "es" %}
+                            <li>{{tag.nameEs}}</li>
+                            {% elif LANGUAGE_CODE == "fa" %}
+                            <li>{{tag.nameFa}}</li>
+                            {% elif LANGUAGE_CODE == "fr" %}
+                            <li>{{tag.nameFr}}</li>
+                            {% elif LANGUAGE_CODE == "tr" %}
+                            <li>{{tag.nameTr}}</li>
+                            {% elif LANGUAGE_CODE == "hi" %}
+                            <li>{{tag.nameHi}}</li>
+                            {% elif LANGUAGE_CODE == "vi" %}
+                            <li>{{tag.nameVi}}</li>
+                            {% elif LANGUAGE_CODE == "ur" %}
+                            <li>{{tag.nameUr}}</li>
+                            {% else %}
+                            <li>{{tag.name}}</li>
+                            {% endif %}
+                        </ol>
+                    </div>
+                </div> <!-- end row -->
+            </div> <!-- end container -->
+        </section>        
+        <!-- end page-title -->
+
+
+        <!-- start blog-single-section -->
+        <section class="blog-single-section section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-md-9">
+                        <div class="blog-content">
+                            <div class="post format-standard-image" style="margin-bottom:10%;padding:15px;">
+                                {% if LANGUAGE_CODE == "ar" %}
+                                {{tag.explAr|safe}}
+                                {% elif LANGUAGE_CODE == "es" %}
+                                {{tag.explEs|safe}}
+                                {% elif LANGUAGE_CODE == "fa" %}
+                                {{tag.explFa|safe}}
+                                {% elif LANGUAGE_CODE == "fr" %}
+                                {{tag.explFr|safe}}
+                                {% elif LANGUAGE_CODE == "tr" %}
+                                {{tag.explTr|safe}}
+                                {% elif LANGUAGE_CODE == "hi" %}
+                                {{tag.explHi|safe}}
+                                {% elif LANGUAGE_CODE == "vi" %}
+                                {{tag.explVi|safe}}
+                                {% elif LANGUAGE_CODE == "ur" %}
+                                {{tag.explUr|safe}}
+                                {% else %}
+                                {{tag.expl|safe}}
+                                {% endif %}
+                            </div>
+                            {% for post in posts_of_tag %}
+                            <a href="/post/{{post.url_name}}">
+                                <div class="col-md-6 col-lg-6 col-sm-12" style="min-height:400px;">
+                                    <div class="img-holder">
+                                        <img src="/media/{{post.detail_image}}" alt>
+                                    </div>
+                                    <img src="/media/{{post.country.flag}}" style="float: right;margin: 3% 0 3% 4%;" width="45">
+                                    {% if LANGUAGE_CODE == "ar" %}
+                                    <h3 style="margin: 0.5em 0 0.5em;">{{post.headerAr}}</h3>
+                                    <p style="font-size:1rem;">{{post.short_explAr}}</p>
+                                    {% elif LANGUAGE_CODE == "es" %}
+                                    <h3 style="margin: 0.5em 0 0.5em;">{{post.headerEs}}</h3>
+                                    <p style="font-size:1rem;">{{post.short_explEs}}</p>
+                                    {% elif LANGUAGE_CODE == "fa" %}
+                                    <h3 style="margin: 0.5em 0 0.5em;">{{post.headerFa}}</h3>
+                                    <p style="font-size:1rem;">{{post.short_explFa}}</p>
+                                    {% elif LANGUAGE_CODE == "fr" %}
+                                    <h3 style="margin: 0.5em 0 0.5em;">{{post.headerFr}}</h3>
+                                    <p style="font-size:1rem;">{{post.short_explFr}}</p>
+                                    {% elif LANGUAGE_CODE == "tr" %}
+                                    <h3 style="margin: 0.5em 0 0.5em;">{{post.headerTr}}</h3>
+                                    <p style="font-size:1rem;">{{post.short_explTr}}</p>
+                                    {% elif LANGUAGE_CODE == "hi" %}
+                                    <h3 style="margin: 0.5em 0 0.5em;">{{post.headerHi}}</h3>
+                                    <p style="font-size:1rem;">{{post.short_explHi}}</p>
+                                    {% elif LANGUAGE_CODE == "vi" %}
+                                    <h3 style="margin: 0.5em 0 0.5em;">{{post.headerVi}}</h3>
+                                    <p style="font-size:1rem;">{{post.short_explVi}}</p>
+                                    {% elif LANGUAGE_CODE == "ur" %}
+                                    <h3 style="margin: 0.5em 0 0.5em;">{{post.headerUr}}</h3>
+                                    <p style="font-size:1rem;">{{post.short_explUr}}</p>
+                                    {% else %}
+                                    <h3 style="margin: 0.5em 0 0.5em;">{{post.header}}</h3>
+                                    <p style="font-size:1rem;">{{post.short_expl}}</p>
+                                    {% endif %}
+                                </div>
+                            <a/>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% RightSideTag %}                  
+                </div>
+            </div> <!-- end container -->
+        </section>
+        <!-- end blog-single-section -->
+        {% FooterTag %}
+
+    </div>
+    <!-- end of page-wrapper -->
+</body>
+{% endblock content %}

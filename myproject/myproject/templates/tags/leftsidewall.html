@@ -1,0 +1,66 @@
+{% load navbar %}
+{% load cache %}
+{% load i18n %}
+
+{% get_available_languages as LANGUAGES %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info_list for LANGUAGES as languages %}
+
+{% comment %} {% cache 8000 sidebar %} {% endcomment %}
+<div class="col col-md-3 col-md-pull-9">
+    <div class="blog-sidebar">
+        <div class="widget category-widget">
+            <h3>{% trans "Categories" %}</h3>
+            <ul>
+                {% for category in categories %}
+                    {% if LANGUAGE_CODE == "ar" %}
+                    <li><a href="/category/{{category.url_name}}">{{category.nameAr}} <span>({{category.id|count_items}})</span></a></li>
+                    {% elif LANGUAGE_CODE == "es" %}
+                    <li><a href="/category/{{category.url_name}}">{{category.nameEs}} <span>({{category.id|count_items}})</span></a></li>
+                    {% elif LANGUAGE_CODE == "fr" %}
+                    <li><a href="/category/{{category.url_name}}">{{category.nameFr}} <span>({{category.id|count_items}})</span></a></li>
+                    {% elif LANGUAGE_CODE == "tr" %}
+                    <li><a href="/category/{{category.url_name}}">{{category.nameTr}} <span>({{category.id|count_items}})</span></a></li>
+                    {% elif LANGUAGE_CODE == "hi" %}
+                    <li><a href="/category/{{category.url_name}}">{{category.nameHi}} <span>({{category.id|count_items}})</span></a></li>
+                    {% elif LANGUAGE_CODE == "vi" %}
+                    <li><a href="/category/{{category.url_name}}">{{category.nameVi}} <span>({{category.id|count_items}})</span></a></li>
+                    {% elif LANGUAGE_CODE == "ur" %}
+                    <li><a href="/category/{{category.url_name}}">{{category.nameUr}} <span>({{category.id|count_items}})</span></a></li>
+                    {% elif LANGUAGE_CODE == "fa" %}
+                    <li><a href="/category/{{category.url_name}}">{{category.nameFa}} <span>({{category.id|count_items}})</span></a></li>
+                    {% else %}
+                    <li><a href="/category/{{category.url_name}}">{{category}} <span>({{category.id|count_items}})</span></a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="widget tag-widget">
+            <h3>{% trans "Countries" %}</h3>
+            <ul>
+                {% for country in countries %}
+                    {% if LANGUAGE_CODE == "ar" %}
+                    <li><a href="/country/{{country.url_name}}">{{country.nameAr}}</a></li>
+                    {% elif LANGUAGE_CODE == "es" %}
+                    <li><a href="/country/{{country.url_name}}">{{country.nameEs}}</a></li>
+                    {% elif LANGUAGE_CODE == "fr" %}
+                    <li><a href="/country/{{country.url_name}}">{{country.nameFr}}</a></li>
+                    {% elif LANGUAGE_CODE == "tr" %}
+                    <li><a href="/country/{{country.url_name}}">{{country.nameTr}}</a></li>
+                    {% elif LANGUAGE_CODE == "hi" %}
+                    <li><a href="/country/{{country.url_name}}">{{country.nameHi}}</a></li>
+                    {% elif LANGUAGE_CODE == "vi" %}
+                    <li><a href="/country/{{country.url_name}}">{{country.nameVi}}</a></li>
+                    {% elif LANGUAGE_CODE == "ur" %}
+                    <li><a href="/country/{{country.url_name}}">{{country.nameUr}}</a></li>
+                    {% elif LANGUAGE_CODE == "fa" %}
+                    <li><a href="/country/{{country.url_name}}">{{country.nameFa}}</a></li>
+                    {% else %}
+                    <li><a href="/country/{{country.url_name}}">{{country}}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>  
+{% comment %} {% endcache %} {% endcomment %}

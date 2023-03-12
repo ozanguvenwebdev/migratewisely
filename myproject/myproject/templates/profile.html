@@ -1,0 +1,376 @@
+{% extends 'base.html' %}
+{% load navbar %}
+{% load static %}
+{% load i18n %}
+
+{% get_available_languages as LANGUAGES %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info_list for LANGUAGES as languages %}
+
+{% block metatags %}
+<title>Profile | Migrate Wisely</title>
+<meta name="description" content="Seek migration opportunities based on their financial status, educational background, and some other specific conditions!">
+<meta name="keywords" content="migration, immigration, visa, citizenship, greencard, citizen, migrate, immigrate, immigrant">
+{% endblock metatags %}
+
+
+{% block content %}
+
+<body>
+
+    <!-- start page-wrapper -->
+    <div class="page-wrapper">
+
+        <!-- start preloader -->
+        <div class="preloader">
+            <div class="sk-folding-cube">
+                <div class="sk-cube1 sk-cube"></div>
+                <div class="sk-cube2 sk-cube"></div>
+                <div class="sk-cube4 sk-cube"></div>
+                <div class="sk-cube3 sk-cube"></div>
+            </div>
+        </div>
+        <!-- end preloader -->
+
+        {% InnerNavbarTag %}
+        <style>
+            .page-title .breadcrumb > li + li:before{color:#2b2e3a;}
+        </style>
+        <!-- start page-title -->
+        <section class="page-title page-title-revised" style="height:130px;background:#97daf7;">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-xs-12">
+                        <h2 style="font-weight:500;font-size:2rem;color:#2b2e3a;text-transform:none;">@{{profile.user}}</h2>
+                        <ol class="breadcrumb">
+                            <li><a style="color:#2b2e3a;" href="/">{% trans "Homepage" %}</a></li>
+                            <li style="color:#2b2e3a;">{% trans "Profile" %}</li>
+                            <li style="color:#2b2e3a;">@{{profile.user}}</li>
+                        </ol>
+                    </div>
+                </div> <!-- end row -->
+            </div> <!-- end container -->
+        </section>        
+        <!-- end page-title -->
+
+        <style>
+            @media only screen and (max-width: 991px) {
+                .media-pp-width {
+                  width:50% !important;
+                }
+                .img-center-media{
+                    text-align:center !important;
+                }
+              }
+            @media only screen and (min-width: 991px) {
+                .padding-for-entry-boxes{
+                    padding: 0 1% !important;
+                }
+              }
+        </style>
+
+        <!-- start blog-single-section -->
+        <section class="blog-single-section blog-single-left-sidebar-section section-padding" style="padding:50px 0;">
+            <div class="container">
+                <div class="row" style="box-shadow: rgb(0 0 0 / 2%) 0px 1px 3px 0px, rgb(27 31 35 / 15%) 0px 0px 0px 1px;padding:2% 1% 0 1%;">
+                    <div class="container">
+                        <div class="col-md-2 col-sm-12">
+                            <div class="blog-sidebar">
+                                <div class="widget about-widget">
+                                    <div class="img-holder img-center-media">
+                                        {% if profile.profile_pic %}
+                                        <img class="media-pp-width" src="/media/{{profile.profile_pic}}" alt style="width:100%;">
+                                        {% else %}
+                                        <img src="{{profile.default_pic}}" alt style="width:100%;">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="blog-sidebar img-center-media">
+                                <div class="widget about-widget">
+                                    <h2>{{profile.name}} {{profile.surname}}</h2>
+                                    <p style="color: #2b2e3a;">@{{profile}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="blog-sidebar">
+                                <div class="widget about-widget">
+                                    {% if profile.user.id == request.user.id %}
+                                    <p class="img-center-media" style="text-align:right;"><a href="/edit-profile/" style="display: inline-flex;align-items: center;"  data-toggle="modal" data-target="#exampleModal"><i class="ti-settings"></i>&nbsp; {% trans "Edit Profile" %}</a></p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:5%;">
+                    <div class="col-md-12">
+                        <div class="blog-content" style="padding-left:0;">
+                            <div class="col col-md-6 col-sm-12" style="padding:0;">
+                                <div class="comments-area" style="margin-top:0;">
+                                    <div class="comments-section padding-for-entry-boxes">
+                                        <h3 class="comments-title" style="font-weight:300;font-size:1.7rem;margin: 0 0 0.5em;">{% trans "Entries" %}</h3>
+                                        <ol class="comments" style="box-shadow: rgb(0 0 0 / 2%) 0px 1px 3px 0px, rgb(27 31 35 / 15%) 0px 0px 0px 1px;">
+                                            {% if profileEntries %}
+                                                {% for entry in profileEntries %}
+                                                <li class="comment even thread-even depth-1" id="comment-1">
+                                                    <div id="div-comment-1">
+                                                        <div class="comment-main-area" style="padding-left:0;">
+                                                            <div class="comment-wrapper">
+                                                                <div class="comments-meta">
+                                                                    <h4 style="color: #7e8690;font-weight:300;font-size: 1rem;line-height: 1.5;">
+                                                                        <a class="hvr-underline-from-left" href="{% url 'app:profile' entry.profile.encrypted_id.ekey %}">@{{entry.profile.user.username}}</a>
+                                                                        {% if entry.country %} &nbsp; | &nbsp; <a class="hvr-underline-from-left" href="/country/{{entry.country.url_name}}">{{entry.country}}</a> {% endif %} 
+                                                                        {% if entry.category %} &nbsp; | &nbsp; <a class="hvr-underline-from-left" href="/category/{{entry.category.url_name}}">{{entry.category}}</a> {% endif %} 
+                                                                        &nbsp; | &nbsp;<span class="comments-date">{{entry.date_created}}</span> &nbsp; | &nbsp;{% trans "Comments" %}: {% NumberOfComments entry.id %} 
+                                                                    </h4>
+                                                                </div>
+                                                                <div class="comment-area">
+                                                                    <p style="font-size: 1.1rem;color:#666;font-weight:300;line-height: 1.3em;">{{entry.heading}}</p>
+                                                                    <div class="comments-reply" style="display: inline-flex;width: 100%;justify-content: space-between;align-items: center;">
+                                                                        <a class="comment-reply-link" href="/entry/{{entry.id}}"><span>{% trans "See All" %}</span></a>
+                                                                        <!-- Button trigger modal -->
+                                                                        {% if profile.user.id == request.user.id %}
+                                                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteEntryModal{{entry.id}}" style="padding: 0.75% 1% 0.75% 1%;border-radius:0;">
+                                                                            <i class="ti-trash"></i>
+                                                                        </button>
+                                                                        {% endif %}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="deleteEntryModal{{entry.id}}" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true" style="margin-top:15%;">
+                                                    <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="delete" style="font-size:20px;">Delete Entry (id={{entry.id}})</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                        {{entry}}
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <form action="" method="POST">{% csrf_token %}
+                                                                <button type="submit" class="btn btn-danger" name="deleteEntry" value="{{entry.id}}">Delete</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Modal -->
+                                                {% endfor %}
+                                            {% else %}
+                                                <li class="comment even thread-even depth-1" id="comment-1">
+                                                    <div id="div-comment-1">
+                                                        <div class="comment-main-area" style="padding-left:0;">
+                                                            <div class="comment-wrapper">
+                                                                <div class="comment-area">
+                                                                    <p style="font-size: 1.1rem;color:#5a5a5a;font-weight:300;line-height: 1.3em;">{% trans "No Comments So Far" %}</p>
+                                                                    <div class="comments-reply">
+                                                                        <a class="comment-reply-link" href="{% url 'app:start-entry' %}"><span>{% trans "Start Entry" %}</span></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            {% endif %}
+                                        </ol>
+                                    </div> <!-- end comments-section -->
+                                </div> <!-- end comments-area -->
+                            </div>
+                            <div class="col col-md-6 col-sm-12" style="padding:0;">
+                                <div class="comments-area" style="margin-top:0;">
+                                    <div class="comments-section padding-for-entry-boxes">
+                                        <h3 class="comments-title" style="font-weight:300;font-size:1.7rem;margin: 0 0 0.5em;">{% trans "Comments" %}</h3>
+                                        <ol class="comments" style="box-shadow: rgb(0 0 0 / 2%) 0px 1px 3px 0px, rgb(27 31 35 / 15%) 0px 0px 0px 1px;">
+                                            {% if profileComments %}
+                                                {% for comment in profileComments %}
+                                                <li class="comment even thread-even depth-1" id="comment-1">
+                                                    <div id="div-comment-1">
+                                                        <div class="comment-main-area" style="padding-left:0;">
+                                                            <div class="comment-wrapper">
+                                                                <div class="comments-meta">
+                                                                    <h4 style="color: #7e8690;font-weight:300;font-size: 1rem;line-height: 1.5;">
+                                                                        <a class="hvr-underline-from-left" href="{% url 'app:profile' comment.profile.encrypted_id.ekey %}">@{{comment.profile.user.username}}</a>
+                                                                        {% if comment.country %} &nbsp; | &nbsp; <a class="hvr-underline-from-left" href="/country/{{comment.country.url_name}}">{{comment.country}}</a> {% endif %} 
+                                                                        {% if comment.category %} &nbsp; | &nbsp; <a class="hvr-underline-from-left" href="/category/{{comment.category.url_name}}">{{comment.category}}</a> {% endif %}
+                                                                        {% if comment.entry %} &nbsp; | &nbsp; 
+                                                                            {% if comment.entry.active == True %}
+                                                                            <a class="hvr-underline-from-left" href="/entry/{{comment.entry.id}}">{{comment.entry}}</a> 
+                                                                            {% else %}
+                                                                            <span>This entry has been deleted</span> 
+                                                                            {% endif %}
+                                                                        {% endif %}
+                                                                         &nbsp; | &nbsp;<span class="comments-date">{{comment.date_created}}</span>
+                                                                    </h4>
+                                                                </div>
+                                                                <div class="comment-area">
+                                                                    <p style="font-size: 1.1rem;color:#666;font-weight:300;line-height: 1.3em;">{{comment.message}}</p>
+                                                                    <div class="comments-reply" style="display: inline-flex;width: 100%;justify-content: space-between;align-items: center;">
+                                                                        {% if comment.entry.active == True %}
+                                                                            <a class="comment-reply-link" href="/entry/{{comment.entry.id}}#comment{{comment.id}}"><span>{% trans "See All" %}</span></a>
+                                                                        {% else %}
+                                                                            <a class="comment-reply-link" href="#" style="pointer-events:none;visibility:hidden;"><span>{% trans "See All" %}</span></a>
+                                                                        {% endif %}
+                                                                        {% if profile.user.id == request.user.id %}
+                                                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteCommentModal{{comment.id}}" style="padding: 0.75% 1% 0.75% 1%;border-radius:0;">
+                                                                            <i class="ti-trash"></i>
+                                                                        </button>
+                                                                        {% endif %}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <div class="modal fade" id="deleteCommentModal{{comment.id}}" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true" style="margin-top:15%;">
+                                                    <div class="modal-dialog" role="document">
+                                                      <div class="modal-content">
+                                                        <div class="modal-header">
+                                                          <h5 class="modal-title" id="delete" style="font-size:20px;">Delete Comment (id={{comment.id}})</h5>
+                                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                          </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                          {{comment}}
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <form action="" method="POST">{% csrf_token %}
+                                                                <button type="submit" class="btn btn-danger" name="deleteComment" value="{{comment.id}}">Delete</button>
+                                                            </form>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                            {% else %}
+                                                <li class="comment even thread-even depth-1" id="comment-1">
+                                                    <div id="div-comment-1">
+                                                        <div class="comment-main-area" style="padding-left:0;">
+                                                            <div class="comment-wrapper">
+                                                                <div class="comment-area">
+                                                                    <p style="font-size: 1.1rem;color:#5a5a5a;font-weight:300;line-height: 1.3em;">{% trans "No Comments So Far" %}</p>
+                                                                    <div class="comments-reply">
+                                                                        <a class="comment-reply-link" href="{% url 'app:start-entry' %}"><span>{% trans "Start Entry" %}</span></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            {% endif %}
+                                        </ol>
+                                    </div> <!-- end comments-section -->
+                                </div> <!-- end comments-area -->
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div> <!-- end container -->
+        </section>
+        <!-- end blog-single-section -->
+
+
+        
+        {% FooterTag %}
+
+    </div>
+    <!-- end of page-wrapper -->
+
+
+
+<style>
+    .pp-display-none:hover{
+        box-shadow:0px 0px 50px grey;
+        transition: box-shadow 0.5s;
+    }
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+        }
+        .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+        }
+
+</style>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="box-shadow:none;border-radius:0;">
+            <div class="modal-header" style="padding:20px;">
+            <h5 class="modal-title" id="exampleModalLabel" style="font-size:22px;">{% trans "Edit Profile" %}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding:20px;">
+                <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="form-group" style="text-align:center;margin-bottom:20px;">
+                        <div class="modal-body" style="margin:auto;">
+                        {% if profile.profile_pic %}
+                        <img class="rounded-circle pp-display-none" src="/media/{{profile.profile_pic}}" width="85" alt=""/>
+                        {% else %}    
+                        <img class="rounded-circle pp-display-none" src="{{profile.default_pic}}" width="85" alt=""/>
+                        {% endif %}    
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom:20px;">
+                        <label for="recipient-name" class="col-form-label" style="font-weight:300;color: #2b2e3a;">{% trans "Name" %}:</label>
+                        <input type="text" name="name" class="form-control" id="recipient-name" style="border-radius:0;color:#666;height:50px;" value="{{profile.name}}" placeholder="{{profile.name}}">
+                    </div>
+                    <div class="form-group" style="margin-bottom:20px;">
+                        <label for="recipient-name" class="col-form-label" style="font-weight:300;color: #2b2e3a;">{% trans "Surname" %}:</label>
+                        <input type="text" name="surname" class="form-control" id="recipient-name" style="border-radius:0;color:#666;height:50px;" value="{{profile.surname}}" placeholder="{{profile.surname}}">
+                    </div>
+                    <label for="recipient-name" class="col-form-label" style="font-weight:300;color: #2b2e3a;">{% trans "Profile Picture" %}</label>
+                    <div class="form-group" style="width:100%;display: inline-flex;justify-content: space-between;align-items: baseline;">
+                        <span class="btn btn-info btn-file" style="color:white;border-radius:0;">
+                            {% trans "Browse" %}<input type="file" id="file" name="file" value="/media/{{profile.profile_pic}}">
+                        </span>
+                        <span id="dosyaAdded" style="display:none;font-weight:600;">{% trans "File added" %}</span>
+                    </div>
+                    <small id="emailHelp" class="form-text text-muted">{% trans "Square optimized" %}</small>
+                    <div class="modal-footer">
+                    <button type="submit" name="updateProfile" class="btn btn-info" style="color:white;border-radius:0;">{% trans "Update" %}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</body>
+
+<script>
+    document.getElementById('file').onchange = function () {
+        document.getElementById('dosyaAdded').style.display = "block"
+        };
+    
+</script>
+
+{% endblock content %}

@@ -1,0 +1,103 @@
+{% load navbar %}
+{% load i18n %}
+{% load cache %}
+
+{% get_available_languages as LANGUAGES %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info_list for LANGUAGES as languages %}
+
+
+{% cache 8000 rightsidebar %}
+<div class="col col-md-3">
+    <div class="blog-sidebar">
+        <div class="widget recent-post-widget">
+            <h3>{% trans "Latest Content" %}</h3>
+            <div class="posts">
+                {% for post in last_posts %}
+                <div class="post">
+                        <a href="/post/{{post.url_name}}">
+                        <div class="img-holder">
+                            <img src="/media/{{post.detail_image}}" alt>
+                        </div>
+                        <div class="details">
+                            {% if LANGUAGE_CODE == "ar" %}
+                            <h4><a href="/post/{{post.url_name}}">{{post.headerAr|truncatechars:50}}</a></h4>
+                            {% elif LANGUAGE_CODE == "es" %}
+                            <h4><a href="/post/{{post.url_name}}">{{post.headerEs|truncatechars:50}}</a></h4>
+                            {% elif LANGUAGE_CODE == "fa" %}
+                            <h4><a href="/post/{{post.url_name}}">{{post.headerFa|truncatechars:50}}</a></h4>
+                            {% elif LANGUAGE_CODE == "fr" %}
+                            <h4><a href="/post/{{post.url_name}}">{{post.headerFr|truncatechars:50}}</a></h4>
+                            {% elif LANGUAGE_CODE == "tr" %}
+                            <h4><a href="/post/{{post.url_name}}">{{post.headerTr|truncatechars:50}}</a></h4>
+                            {% elif LANGUAGE_CODE == "hi" %}
+                            <h4><a href="/post/{{post.url_name}}">{{post.headerHi|truncatechars:50}}</a></h4>
+                            {% elif LANGUAGE_CODE == "vi" %}
+                            <h4><a href="/post/{{post.url_name}}">{{post.headerVi|truncatechars:50}}</a></h4>
+                            {% elif LANGUAGE_CODE == "ur" %}
+                            <h4><a href="/post/{{post.url_name}}">{{post.headerUr|truncatechars:50}}</a></h4>
+                            {% else %}
+                            <h4><a href="/post/{{post.url_name}}">{{post.header|truncatechars:50}}</a></h4>
+                            {% endif %}
+                            <span class="date">{{post.create_date}}</span>
+                        </div>
+                    </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="widget category-widget">
+            <h3 lang="{{LANGUAGE_CODE}}">{% trans "Categories" %}</h3>
+            <ul>
+                {% for item in categories %}
+                    {% if LANGUAGE_CODE == "ar" %}
+                    <li><a href="/category/{{item.url_name}}">{{item.nameAr}} <span>({{item.id|count_items}})</span></a></li>
+                    {% elif LANGUAGE_CODE == "es" %}
+                    <li><a href="/category/{{item.url_name}}">{{item.nameEs}} <span>({{item.id|count_items}})</span></a></li>
+                    {% elif LANGUAGE_CODE == "fa" %}
+                    <li><a href="/category/{{item.url_name}}">{{item.nameFa}} <span>({{item.id|count_items}})</span></a></li>
+                    {% elif LANGUAGE_CODE == "fr" %}
+                    <li><a href="/category/{{item.url_name}}">{{item.nameFr}} <span>({{item.id|count_items}})</span></a></li>
+                    {% elif LANGUAGE_CODE == "tr" %}
+                    <li><a href="/category/{{item.url_name}}">{{item.nameTr}} <span>({{item.id|count_items}})</span></a></li>
+                    {% elif LANGUAGE_CODE == "hi" %}
+                    <li><a href="/category/{{item.url_name}}">{{item.nameHi}} <span>({{item.id|count_items}})</span></a></li>
+                    {% elif LANGUAGE_CODE == "vi" %}
+                    <li><a href="/category/{{item.url_name}}">{{item.nameVi}} <span>({{item.id|count_items}})</span></a></li>
+                    {% elif LANGUAGE_CODE == "ur" %}
+                    <li><a href="/category/{{item.url_name}}">{{item.nameUr}} <span>({{item.id|count_items}})</span></a></li>
+                    {% else %}
+                    <li><a href="/category/{{item.url_name}}">{{item.name}} <span>({{item.id|count_items}})</span></a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="widget tag-widget">
+            <h3>{% trans "Tags" %}</h3>
+            <ul>
+                {% for tag in tags %}
+                    {% if LANGUAGE_CODE == "ar" %}
+                    <li><a href="/tag/{{tag.url_name}}">{{tag.nameAr}}#</a></li>
+                    {% elif LANGUAGE_CODE == "es" %}
+                    <li><a href="/tag/{{tag.url_name}}">#{{tag.nameEs}}</a></li>
+                    {% elif LANGUAGE_CODE == "fa" %}
+                    <li><a href="/tag/{{tag.url_name}}">{{tag.nameFa}}#</a></li>
+                    {% elif LANGUAGE_CODE == "fr" %}
+                    <li><a href="/tag/{{tag.url_name}}">#{{tag.nameFr}}</a></li>
+                    {% elif LANGUAGE_CODE == "tr" %}
+                    <li><a href="/tag/{{tag.url_name}}">#{{tag.nameTr}}</a></li>
+                    {% elif LANGUAGE_CODE == "hi" %}
+                    <li><a href="/tag/{{tag.url_name}}">#{{tag.nameHi}}</a></li>
+                    {% elif LANGUAGE_CODE == "vi" %}
+                    <li><a href="/tag/{{tag.url_name}}">#{{tag.nameVi}}</a></li>
+                    {% elif LANGUAGE_CODE == "ur" %}
+                    <li><a href="/tag/{{tag.url_name}}">{{tag.nameUr}}#</a></li>
+                    {% else %}
+                    <li><a href="/tag/{{tag.url_name}}">#{{tag.name}}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endcache %}

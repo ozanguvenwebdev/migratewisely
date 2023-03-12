@@ -1,0 +1,10 @@
+<button id="favButton" 
+        hx-post="{% url 'app:remove-from-favorites' post.url_name %}" 
+        hx-target="#userFavorite" 
+        hx-swap="outerHTML" 
+        hx-swap-oob="true"
+        style="float:right;border: 0;padding: 1% 4%;background: #F27843;color: white;display:inline-flex;align-items: center;"
+        title="Remove Bookmark">
+        Bookmarked &nbsp;
+        <i class="ti-flag" style="font-size:20px;font-weight:300;color:white;"></i>
+</button>

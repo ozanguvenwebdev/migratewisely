@@ -1,0 +1,19 @@
+<div id="userFavorite" style="float:right;">
+    {% if favorites %}
+        {% for fav in favorites %}
+        <i class="ti-star" style="font-size: 30px;font-weight: 600;color: #F27843;"></i>
+        {% endfor %}
+    {% else %}
+    {% endif %}
+</div>
+<button id="favButton" 
+        hx-post="{% url 'app:add-to-favorites' post.url_name %}" 
+        hx-target="#userFavorite" 
+        hx-swap="beforeend"
+        hx-swap-oob="true"
+        style="border: 0;background: #ffffff00;color: #7e8690;padding: 1% 0;display:inline-flex;align-items: center;"
+        class="hvr-underline-from-left">
+        Bookmark &nbsp;
+        <i class="ti-flag" style="font-size:22px;font-weight:300;color: #F27843;"></i>
+</button>
+

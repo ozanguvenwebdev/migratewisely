@@ -1,0 +1,427 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load navbar %}
+{% load i18n %}
+
+{% get_available_languages as LANGUAGES %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info_list for LANGUAGES as languages %}
+
+{% block metatags %}
+    {% if LANGUAGE_CODE == "ar" %}
+        <title>{{post.headerAr}} | Migrate Wisely</title>
+        <meta name="description" content="{{post.descriptionAr}}">
+        <meta name="keywords" content="{{post.keywordsAr}}">
+    {% elif LANGUAGE_CODE == "es" %}
+        <title>{{post.headerEs}} | Migrate Wisely</title>
+        <meta name="description" content="{{post.descriptionEs}}">
+        <meta name="keywords" content="{{post.keywordsEs}}">
+    {% elif LANGUAGE_CODE == "fr" %}
+        <title>{{post.headerFr}} | Migrate Wisely</title>
+        <meta name="description" content="{{post.descriptionFr}}">
+        <meta name="keywords" content="{{post.keywordsFr}}">
+    {% elif LANGUAGE_CODE == "tr" %}
+        <title>{{post.headerTr}} | Migrate Wisely</title>
+        <meta name="description" content="{{post.descriptionTr}}">
+        <meta name="keywords" content="{{post.keywordsTr}}">
+    {% elif LANGUAGE_CODE == "hi" %}
+        <title>{{post.headerHi}} | Migrate Wisely</title>
+        <meta name="description" content="{{post.descriptionHi}}">
+        <meta name="keywords" content="{{post.keywordsHi}}">
+    {% elif LANGUAGE_CODE == "vi" %}
+        <title>{{post.headerVi}} | Migrate Wisely</title>
+        <meta name="description" content="{{post.descriptionVi}}">
+        <meta name="keywords" content="{{post.keywordsVi}}">
+    {% elif LANGUAGE_CODE == "fa" %}
+        <title>{{post.headerFa}} | Migrate Wisely</title>
+        <meta name="description" content="{{post.descriptionFa}}">
+        <meta name="keywords" content="{{post.keywordsFa}}">
+    {% elif LANGUAGE_CODE == "ur" %}
+        <title>{{post.headerUr}} | Migrate Wisely</title>
+        <meta name="description" content="{{post.descriptionUr}}">
+        <meta name="keywords" content="{{post.keywordsUr}}">
+    {% else %}
+        <title>{{post.header}} | Migrate Wisely</title>
+        <meta name="description" content="{{post.description}}">
+        <meta name="keywords" content="{{post.keywords}}">
+    {% endif %}
+{% endblock metatags %}
+
+
+{% block content %}
+
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+
+    <!-- start page-wrapper -->
+    <div class="page-wrapper">
+
+        <!-- start preloader -->
+        <div class="preloader">
+            <div class="sk-folding-cube">
+                <div class="sk-cube1 sk-cube"></div>
+                <div class="sk-cube2 sk-cube"></div>
+                <div class="sk-cube4 sk-cube"></div>
+                <div class="sk-cube3 sk-cube"></div>
+            </div>
+        </div>
+        <!-- end preloader -->
+
+        {% InnerNavbarTag %}
+
+        <style>
+            .page-title-revised{
+            background: url({% static 'assets/images/blogdetail.jpg' %}) center center/cover no-repeat local;
+            }
+        </style>
+
+        <!-- start page-title -->
+        <section class="page-title page-title-revised" style="height:130px;background:#F27843;">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-xs-12">
+                        {% if LANGUAGE_CODE == "ar" %}
+                        <h2 lang="ar" style="font-weight:500;font-size:2rem;">{{post.headerAr}}</h2>
+                        {% elif LANGUAGE_CODE == "es" %}
+                        <h2 lang="es" style="font-weight:500;font-size:2rem;">{{post.headerEs}}</h2>
+                        {% elif LANGUAGE_CODE == "fa" %}
+                        <h2 lang="fa" style="font-weight:500;font-size:2rem;">{{post.headerFa}}</h2>
+                        {% elif LANGUAGE_CODE == "fr" %}
+                        <h2 lang="fr" style="font-weight:500;font-size:2rem;">{{post.headerFr}}</h2>
+                        {% elif LANGUAGE_CODE == "tr" %}
+                        <h2 lang="tr" style="font-weight:500;font-size:2rem;">{{post.headerTr}}</h2>
+                        {% elif LANGUAGE_CODE == "hi" %}
+                        <h2 lang="hi" style="font-weight:500;font-size:2rem;">{{post.headerHi}}</h2>
+                        {% elif LANGUAGE_CODE == "vi" %}
+                        <h2 lang="vi" style="font-weight:500;font-size:2rem;">{{post.headerVi}}</h2>
+                        {% elif LANGUAGE_CODE == "ur" %}
+                        <h2 lang="ur" style="font-weight:500;font-size:2rem;">{{post.headerUr}}</h2>
+                        {% else %}
+                        <h2 lang="en" style="font-weight:500;font-size:2rem;">{{post.header}}</h2>
+                        {% endif %}
+                        <ol class="breadcrumb mobil-baslik-display-none">
+                            <li class="hvr-underline-from-right"><a href="/" style="color:white;">{% trans "Homepage" %}</a></li>
+                            {% if LANGUAGE_CODE == "ar" %}
+                            <li>{{post.headerAr}}</li>
+                            {% elif LANGUAGE_CODE == "es" %}
+                            <li>{{post.headerEs}}</li>
+                            {% elif LANGUAGE_CODE == "fa" %}
+                            <li>{{post.headerFa}}</li>
+                            {% elif LANGUAGE_CODE == "fr" %}
+                            <li>{{post.headerFr}}</li>
+                            {% elif LANGUAGE_CODE == "tr" %}
+                            <li>{{post.headerTr}}</li>
+                            {% elif LANGUAGE_CODE == "hi" %}
+                            <li>{{post.headerHi}}</li>
+                            {% elif LANGUAGE_CODE == "vi" %}
+                            <li>{{post.headerVi}}</li>
+                            {% elif LANGUAGE_CODE == "ur" %}
+                            <li>{{post.headerUr}}</li>
+                            {% else %}
+                            <li>{{post.header}}</li>
+                            {% endif %}
+                        </ol>
+                    </div>
+                </div> <!-- end row -->
+            </div> <!-- end container -->
+        </section>        
+        <!-- end page-title -->
+
+        <style>
+            .blog-single-section .entry-meta > li + li:before{background:#97daf7;}
+
+            .displayNoneSecondMessage{display:none;}
+            
+        </style>
+        
+
+        <!-- start blog-single-section -->
+        <section class="blog-single-section section-padding" style="padding-top:70px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-md-9">
+                        <div class="blog-content">
+                            <div class="post format-standard-image">
+                                <div class="entry-media">
+                                    <img src="/media/{{post.detail_image}}" alt>
+                                </div>
+                                {% if request.user.is_authenticated %}
+                                <ul class="entry-meta" style="margin-top:15px;">
+                                    <li style="margin-top:1%;">{% trans "Last Update" %}: {{post.create_date}}</li>
+                                    <div style="text-align:right;">
+                                        <div id="userFavorite" style="float:right;">
+                                            {% for fav in favorites %}
+                                            {% comment %} <i class="ti-bookmark" style="font-size: 30px;font-weight: 600;color: #F27843;"></i> {% endcomment %}
+                                            {% endfor %}
+                                        </div>
+                                        {% if not favorites %}
+                                        <button id="favButton" 
+                                                hx-post="{% url 'app:add-to-favorites' post.url_name %}" 
+                                                hx-target="#userFavorite" 
+                                                hx-swap="beforeend" 
+                                                style="border: 0;background: #ffffff00;color: #7e8690;padding: 1% 0;display:inline-flex;align-items: center;"
+                                                class="hvr-underline-from-left">
+                                                {% trans "Bookmark" %} &nbsp;
+                                                <i class="ti-bookmark" style="font-size:22px;font-weight:300;color: #F27843;"></i>
+                                        </button>
+                                        {% else %}
+                                        <button id="favButton" 
+                                                hx-post="{% url 'app:remove-from-favorites' post.url_name %}" 
+                                                hx-target="#userFavorite" 
+                                                hx-swap="outerHTML" 
+                                                hx-swap-oob="true"
+                                                style="float:right;border: 0;padding: 1% 4%;background: #F27843;color: white;display:inline-flex;align-items: center;"
+                                                title="Remove Bookmark">
+                                                {% trans "Bookmarked" %} &nbsp;
+                                                <i class="ti-bookmark" style="font-size:20px;font-weight:300;color: white;"></i>
+                                        </button>
+                                        {% endif %}
+                                    </div>
+                                </ul>
+                                {% else %}
+                                <ul class="entry-meta" style="margin-top:15px;">
+                                    <li style="margin-top:1%;">{% trans "Last Update" %}: {{post.create_date}}</li>
+                                    <div style="text-align:right;">
+                                        <button id="redirectButton"
+                                                onclick = "redirectFunction()"
+                                                style="float:right;border: 0;padding: 0.75% 3%;background: #F27843;color: white;display:inline-flex;align-items: center;">
+                                                {% trans "Bookmark" %} &nbsp; <i class="ti-bookmark" style="font-size:15px;font-weight:300;color: white;"></i>
+                                        </button>
+                                    </div>
+                                </ul>
+                                {% endif %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                <h2 style="font-weight:500;font-size:2rem;text-align:right;">{{post.headerAr}}</h2>
+                                {{post.explAr|safe}}
+                                {% elif LANGUAGE_CODE == "es" %}
+                                <h2 style="font-weight:500;font-size:2rem;">{{post.headerEs}}</h2>
+                                {{post.explEs|safe}}
+                                {% elif LANGUAGE_CODE == "fa" %}
+                                <h2 style="font-weight:500;font-size:2rem;text-align:right;">{{post.headerFa}}</h2>
+                                {{post.explFa|safe}}
+                                {% elif LANGUAGE_CODE == "fr" %}
+                                <h2 style="font-weight:500;font-size:2rem;">{{post.headerFr}}</h2>
+                                {{post.explFr|safe}}
+                                {% elif LANGUAGE_CODE == "tr" %}
+                                <h2 style="font-weight:500;font-size:2rem;">{{post.headerTr}}</h2>
+                                {{post.explTr|safe}}
+                                {% elif LANGUAGE_CODE == "hi" %}
+                                <h2 style="font-weight:500;font-size:2rem;">{{post.headerHi}}</h2>
+                                {{post.explHi|safe}}
+                                {% elif LANGUAGE_CODE == "vi" %}
+                                <h2 style="font-weight:500;font-size:2rem;">{{post.headerVi}}</h2>
+                                {{post.explVi|safe}}
+                                {% elif LANGUAGE_CODE == "ur" %}
+                                <h2 style="font-weight:500;font-size:2rem;text-align:right;">{{post.headerUr}}</h2>
+                                {{post.explUr|safe}}
+                                {% else %}
+                                <h2 style="font-weight:500;font-size:2rem;">{{post.header}}</h2>
+                                {{post.expl|safe}}
+                                {% endif %}
+                            </div>
+                            <div class="tag-share">
+                                <div class="tag">
+                                    {% trans "Tags" %}: &nbsp;
+                                    <ul>
+                                        {% for tag in tags_of_post %}
+                                            {% if LANGUAGE_CODE == "ar" %}
+                                            <li><a href="/tag/{{tag.url_name}}">{{tag.nameAr}}</a></li>
+                                            {% elif LANGUAGE_CODE == "es" %}
+                                            <li><a href="/tag/{{tag.url_name}}">{{tag.nameEs}}</a></li>
+                                            {% elif LANGUAGE_CODE == "fa" %}
+                                            <li><a href="/tag/{{tag.url_name}}">{{tag.nameFa}}</a></li>
+                                            {% elif LANGUAGE_CODE == "fr" %}
+                                            <li><a href="/tag/{{tag.url_name}}">{{tag.nameFr}}</a></li>
+                                            {% elif LANGUAGE_CODE == "tr" %}
+                                            <li><a href="/tag/{{tag.url_name}}">{{tag.nameTr}}</a></li>
+                                            {% elif LANGUAGE_CODE == "hi" %}
+                                            <li><a href="/tag/{{tag.url_name}}">{{tag.nameHi}}</a></li>
+                                            {% elif LANGUAGE_CODE == "vi" %}
+                                            <li><a href="/tag/{{tag.url_name}}">{{tag.nameVi}}</a></li>
+                                            {% elif LANGUAGE_CODE == "ur" %}
+                                            <li><a href="/tag/{{tag.url_name}}">{{tag.nameUr}}</a></li>
+                                            {% else %}
+                                            <li><a href="/tag/{{tag.url_name}}">{{tag.name}}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <div class="share">
+                                    {% trans "Share" %}: &nbsp;
+                                    <ul>
+                                        <li><a href="#"><i class="ti-facebook"></i></a></li>
+                                        <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
+                                        <li><a href="#"><i class="ti-linkedin"></i></a></li>
+                                        <li><a href="#"><i class="ti-instagram"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div> <!-- end tag-share -->
+                            <div>
+                            <div class="col col-md-12">
+                                <h2 class="comment-reply-title" style="font-weight:300;font-size:33px;margin-top:50px;border-bottom: 1px solid #2b2e3a;">{% trans "Comments" %}</h2>
+                                <div class="blog-content">
+                                    <div class="comments-area">
+                                        <div class="comments-section">
+                                            {% if relatedComments %}
+                                            <ol class="comments" style="box-shadow: rgb(0 0 0 / 2%) 0px 1px 3px 0px, rgb(27 31 35 / 15%) 0px 0px 0px 1px;">
+                                                {% for comment in relatedComments %}
+                                                <li class="comment even thread-even depth-1" id="comment-1">
+                                                    <div id="comment{{comment.id}}" style="border-bottom: none; {% if forloop.first %}{% else %}border-top:1px solid #1b1f2326;{% endif %}">
+                                                        <div class="comment-main-area">
+                                                            <div class="comment-wrapper">
+                                                                <div class="comments-meta">
+                                                                    <h4 style="color: #7e8690;font-weight:300;font-size: 1rem;"><a class="hvr-underline-from-left" href="{% url 'app:profile' comment.profile.encrypted_id.ekey %}">@{{comment.profile.user}}</a> | <span class="comments-date">{{comment.date_created}}</span></h4>
+                                                                </div>
+                                                                <div class="comment-area">
+                                                                    <p style="font-size: 1.1rem;color:#666;font-weight: 300;line-height: 1.3em;">{{comment.message}}</p>
+                                                                    <div class="comments-reply">
+                                                                        {% if 'member' == request.user.groups.all.first.name %}
+                                                                        <a class="comment-reply-link hvr-underline-from-right" type="button" onclick="ableReplyArea({{comment.id}})" href="#comment{{comment.id}}" style="cursor:pointer;background: #F27843;"><span>{% trans "Reply" %}</span></a>
+                                                                        {% else %}
+                                                                        <a class="comment-reply-link" type="button" href="{% url 'app:registerUser' %}" style="cursor:pointer;background-color: #F27843;"><span>{% trans "Submit" %}</span></a>
+                                                                        {% endif %}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <ul class="children displayNoneSecondMessage" id="{{comment.id}}" style="background:#f278432e;">
+                                                        <li class="comment">
+                                                            <div style="border-bottom:none;border-top: 1px solid #f1f1f1;">
+                                                                <div class="comment-main-area">
+                                                                    <div class="comment-wrapper">
+                                                                        <div class="comment-area">
+                                                                            <form method="POST" id="secondcommentform" class="comment-form">
+                                                                                {% csrf_token %}
+                                                                                <input type="text" name="specificCommentId" value="{{comment.id}}" style="display:none;">
+                                                                                <h5 id="alert" style="margin-top: 0;font-size:17px;color: #666;font-family: 'Source Sans Pro', sans-serif;display: none;">{% trans "Maximum Characters Reached" %}</h5>
+                                                                                <div class="form-textarea">
+                                                                                    <textarea id="commentSecond" name="message" placeholder="{% trans 'Write Your Comments' %}..." maxlength="250" style="border: none;width: 100%;outline: none;background:#fffff000;min-height: 160px;" autocomplete="off" onkeypress="count()" autofocus required></textarea>
+                                                                                </div>
+                                                                                <div class="comments-reply">
+                                                                                    {% comment %} <a class="comment-reply-link" onclick="document.getElementById('secondcommentform').submit()" style="cursor:pointer;"><span>Submit</span></a> {% endcomment %}
+                                                                                    <div class="form-submit" style="display: inline-flex;justify-content: space-between;width: 100%;align-items: center;">
+                                                                                        <input id="submit" value="{% trans "Submit" %}" type="submit" name="postPageSecondComment" style="border: none;background-color:#F27843;color: white;font-size: 0.875rem;font-weight: 300;padding: 4px 14px;">
+                                                                                        <h4 style="font-size:16px;color: #666;font-family: 'Source Sans Pro', sans-serif;"><span id="counter">0</span> /250 {% trans "Characters" %}</h4>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    {% for secondComment in secondComments %}
+                                                        {% if secondComment.comment == comment %}
+                                                        <ul class="children">
+                                                            <li class="comment">
+                                                                <div style="border-top: 1px solid #f1f1f1;border-bottom: none;">
+                                                                    <div class="comment-main-area">
+                                                                        <div class="comment-wrapper">
+                                                                            <div class="comments-meta">
+                                                                                <h4 style="display: inline-flex;align-items: flex-end;color: #7e8690;font-weight:300;font-size: 1rem;"><i class="ti-back-right" style="transform: rotateY(180deg);"></i>&nbsp;&nbsp; <a class="hvr-underline-from-left" href="{% url 'app:profile' secondComment.profile.encrypted_id.ekey %}">@{{secondComment.profile.user}}</a> &nbsp;|&nbsp; <span class="comments-date">{{secondComment.date_created}}</span></h4>
+                                                                            </div>
+                                                                            <div class="comment-area">
+                                                                                <p style="line-break: anywhere;font-size: 1.1rem;color: #666;font-weight: 300;line-height: 1.3em;">{{secondComment.message}}</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </li>
+                                                {% endfor %}
+                                            </ol>
+                                            {% else %}
+                                            <h2 class="comment-reply-title" style="margin-bottom:0.8em;font-size: 1.375rem;font-weight: 300;">{% trans "No Comments So Far" %}</h2>    
+                                            {% endif %}
+                                        </div>
+                                    </div> <!-- end comments-area -->
+                                    <div class="comments-area" style="margin-top:10%;">
+                                        <div class="comment-respond" style="margin-top:0;">
+                                            <h2 class="comment-reply-title" style="margin-bottom:0.8em;font-weight:300;">{% trans "Post Comment" %}</h2>
+                                            {% if 'member' == request.user.groups.all.first.name %}
+                                            <form method="POST" id="commentform" class="comment-form">
+                                                {% csrf_token %}
+                                                <div class="form-inputs">
+                                                    <p>{% trans "About" %}: {% if LANGUAGE_CODE == "ar" %}{{post.headerAr}}
+                                                                            {% elif LANGUAGE_CODE == "es" %}{{post.headerEs}}
+                                                                            {% elif LANGUAGE_CODE == "fr" %}{{post.headerFr}}
+                                                                            {% elif LANGUAGE_CODE == "tr" %}{{post.headerTr}}
+                                                                            {% elif LANGUAGE_CODE == "fa" %}{{post.headerFa}}
+                                                                            {% elif LANGUAGE_CODE == "vi" %}{{post.headerVi}}
+                                                                            {% elif LANGUAGE_CODE == "hi" %}{{post.headerHi}}
+                                                                            {% elif LANGUAGE_CODE == "ur" %}{{post.headerUr}}
+                                                                            {% else %}{{post}}{% endif %}</p>
+                                                </div>
+                                                <div class="form-textarea">
+                                                    <textarea id="comment" name="message" placeholder="{% trans 'Write Your Comments' %}..." autocomplete="off" required></textarea>
+                                                </div>
+                                                <div class="form-submit">
+                                                    <input id="submit" value="{% trans "Submit" %}" type="submit" name="postPageComment">
+                                                </div>
+                                            </form>
+                                            {% else %}
+                                            <a class="comment-reply-link hvr-underline-from-right" type="button" href="{% url 'app:registerUser' %}" style="cursor:pointer;font-size: 1.1rem;padding: 15px 30px;background:#F27843;"><span>Log In To Comment</span></a>
+                                            {% endif %}
+                                        </div>
+                                    </div> <!-- end comments-area -->
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% RightSideTag %}                  
+                </div>
+            </div> <!-- end container -->
+        </section>
+        <!-- end blog-single-section -->
+        {% FooterTag %}
+
+    </div>
+    <!-- end of page-wrapper -->
+    <script type="text/javascript">
+        var vglnk = {key: '597b24a71789af1d1ede60fa8d99d18b'};
+        (function(d, t) {
+            var s = d.createElement(t);
+                s.type = 'text/javascript';
+                s.async = true;
+                s.src = '//cdn.viglink.com/api/vglnk.js';
+            var r = d.getElementsByTagName(t)[0];
+                r.parentNode.insertBefore(s, r);
+        }(document, 'script'));
+    </script>
+</body>
+
+<script>
+    function ableReplyArea(id) {
+        var element = document.getElementById(id);
+        element.classList.remove("displayNoneSecondMessage");
+        }
+
+    function count() {
+        var text = document.getElementById("commentSecond");
+        var counter = document.getElementById("counter");
+        var alert = document.getElementById("alert");
+        counter.innerText = text.value.length;
+
+        if (text.value.length >= 250) {
+            alert.style.display = "block";
+        } else {
+            text.style.color = "#666";
+            alert.style.display = "none";
+        }
+    }
+</script>
+
+
+<script>
+    function redirectFunction(){
+        location.href = "/login/";
+    };
+</script>
+
+
+{% endblock content %}

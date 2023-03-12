@@ -1,0 +1,325 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load navbar %}
+{% load i18n %}
+
+{% get_available_languages as LANGUAGES %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info_list for LANGUAGES as languages %}
+
+{% block metatags %}
+<title>Log In | Migrate Wisely</title>
+<meta name="description" content="Seek migration opportunities based on their financial status, educational background, and some other specific conditions!">
+<meta name="keywords" content="migration, immigration, visa, citizenship, greencard, citizen, migrate, immigrate, immigrant">
+{% endblock metatags %}
+
+{% block content %}
+
+<style>
+        
+    .world-outline {
+    fill: none;
+    stroke: rgba(0, 0, 0, 0.1);
+    stroke-width: 1px;
+    }
+
+    .back-country {
+    fill: #dadac4;
+    stroke: #fff;
+    stroke-width: 0px;
+    stroke-linejoin: round;
+    }
+
+    .back-line {
+    fill: none;
+    stroke: #000;
+    stroke-opacity: 0.05;
+    stroke-width: 0.5px;
+    }
+
+    .country {
+    fill: #737368;
+    stroke: #fff;
+    stroke-width: 0px;
+    stroke-linejoin: round;
+    }
+
+    .line {
+    fill: none;
+    stroke: #000;
+    stroke-opacity: 0.08;
+    stroke-width: 0.5px;
+    }
+
+    text {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    text-anchor: middle;
+    }
+</style>
+
+<style>
+    @media only screen and (max-width: 550px) {
+        .display-none-world{display:none !important;}
+      }
+</style>
+
+<body>
+
+    <!-- start page-wrapper -->
+    <div class="page-wrapper">
+
+        <!-- start preloader -->
+        <div class="preloader">
+            <div class="sk-folding-cube">
+                <div class="sk-cube1 sk-cube"></div>
+                <div class="sk-cube2 sk-cube"></div>
+                <div class="sk-cube4 sk-cube"></div>
+                <div class="sk-cube3 sk-cube"></div>
+            </div>
+        </div>
+        <!-- end preloader -->
+
+        {% InnerNavbarTag %}
+        <!-- start page-title -->
+        <section class="page-title page-title-revised" style="height:130px;background:#F27843;">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-xs-12">
+                        <h2 style="font-weight:500;font-size:2rem;">Login</h2>
+                        <ol class="breadcrumb">
+                            <li><a style="color:white;" href="/">Homepage</a></li>
+                            <li>Login</li>
+                        </ol>
+                    </div>
+                </div> <!-- end row -->
+            </div> <!-- end container -->
+        </section>        
+        <!-- end page-title -->
+        <!-- start contact-pg-section -->
+        <section class="contact-pg-section section-padding">
+            <div class="container">
+                <style>.contact-pg-section form div{padding:0 !important;}</style>
+                <div class="col col-xs-12 col-md-6">
+                    <div class="section-title-s3" style="margin-bottom: 40px;">
+                        <span>Migrate Wisely</span>
+                        <h2 style="font-weight:300;">Login</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col col-xs-12">
+                            <div class="contact-form">
+                                <form method="POST" class="contact-validation-active" action=".">
+                                    {% csrf_token %}
+                                    <div style="margin-bottom:2%;">
+                                        <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
+                                    </div>
+                                    <div style="margin-bottom:7%;">
+                                        <input type="password" class="form-control" name="password" id="password1" placeholder="Password" required>
+                                    </div>
+                                    <div class="submit-btn-wrapper">
+                                        <button type="submit" class="theme-btn-s2" name="loginUser">Submit</button>
+                                        <div id="loader">
+                                            <i class="ti-reload"></i>
+                                        </div>
+                                    </div>
+                                    <div style="text-align:center;margin-top:4%;">Don't you have an account? <a href="{% url 'app:registerUser' %}" style="color:#F27843;">Register now.</a></div>
+                                    <div style="text-align:center;margin-top:4%;"><a href="{% url 'reset_password' %}" style="color:#F27843;">Forgot password? </a></div>
+                                    {% comment %} <div style="text-align:center;margin-top:4%;"><a href="#" style="color:#F27843;"  data-toggle="modal" data-target="#exampleModal">Forgot password?</a></div> {% endcomment %}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-xs-12 col-md-6 display-none-world" style="margin-right:-5%;">
+                    <div class="contact-form">
+                        <div class="worldbox" style="text-align:center;margin:auto;margin-top:9%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end contact-pg-section -->
+
+
+        {% FooterTag %}
+
+        
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="box-shadow:none;border-radius:0;">
+                    <div class="modal-header" style="padding:20px;">
+                    <h5 class="modal-title" id="exampleModalLabel" style="font-size:22px;">Password Reset E-mail</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="padding:20px;">
+                        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label for="recipient-name" class="col-form-label" style="font-weight:300;color: #2b2e3a;">E-mail:</label>
+                                <input type="email" name="email" class="form-control" id="recipient-name" style="border-radius:0;color:#666;height:50px;" placeholder="Enter your e-mail..." required>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" name="resetPassword" class="btn btn-info" style="color:white;border-radius:0;">Send</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of page-wrapper -->
+</body>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="https://d3js.org/topojson.v0.min.js"></script>
+<script>
+    var width = 500,
+    height = 300;
+
+    var centroid = d3.geo.path()
+        .projection(function(d) { return d; })
+        .centroid;
+
+    var projection = d3.geo.orthographic()
+        .scale(height / 2.0)
+        .translate([width / 2, height / 2])
+        .clipAngle(90);
+
+    var path = d3.geo.path()
+        .projection(projection);
+
+    var graticule = d3.geo.graticule()
+        .extent([[-180, -90], [180 - .1, 90 - .1]]);
+
+    var svg = d3.select(".worldbox").append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+    svg.append("circle")
+        .attr("class", "world-outline")
+        .attr("cx", width / 2)
+        .attr("cy", height / 2)
+        .attr("r", projection.scale());
+
+    var rotate = d3_geo_greatArcInterpolator();
+
+    d3.json("https://s3-us-west-2.amazonaws.com/s.cdpn.io/95802/world-110m.json", function(error, world) {
+    var countries = topojson.object(world, world.objects.countries).geometries,
+        i = -1,
+        n = countries.length;
+    
+    projection.clipAngle(180);
+
+    var backLine = svg.append("path")
+        .datum(graticule)
+        .attr("class", "back-line")
+        .attr("d", path);
+
+    var backCountry = svg.selectAll(".back-country")
+        .data(countries)
+        .enter().insert("path", ".back-line")
+        .attr("class", "back-country")
+        .attr("d", path);
+
+    projection.clipAngle(90);
+
+    var line = svg.append("path")
+        .datum(graticule)
+        .attr("class", "line")
+        .attr("d", path);
+
+    var country = svg.selectAll(".country")
+        .data(countries)
+        .enter().insert("path", ".line")
+        .attr("class", "country")
+        .attr("d", path);
+
+    var title = svg.append("text")
+        .attr("x", width / 2)
+        .attr("y", height * 3 / 5);
+
+    step();
+
+    function step() {
+        if (++i >= n) i = 0;
+
+        // title.text(countries[i].id);
+
+        country.transition()
+        .style("fill", function(d, j) { return j === i ? "#97daf7" : "#F27843"; });
+
+        d3.transition()
+            .delay(250)
+            .duration(1250)
+            .tween("rotate", function() {
+            var point = centroid(countries[i]);
+            rotate.source(projection.rotate()).target([-point[0], -point[1]]).distance();
+            return function(t) {
+                projection.rotate(rotate(t)).clipAngle(180);
+                backCountry.attr("d", path);
+                backLine.attr("d", path);
+
+                projection.rotate(rotate(t)).clipAngle(90);
+                country.attr("d", path);
+                line.attr("d", path);
+            };
+            })
+        .transition()
+            .each("end", step);
+    }
+    });
+
+    var d3_radians = Math.PI / 180;
+
+    function d3_geo_greatArcInterpolator() {
+    var x0, y0, cy0, sy0, kx0, ky0,
+        x1, y1, cy1, sy1, kx1, ky1,
+        d,
+        k;
+
+    function interpolate(t) {
+        var B = Math.sin(t *= d) * k,
+            A = Math.sin(d - t) * k,
+            x = A * kx0 + B * kx1,
+            y = A * ky0 + B * ky1,
+            z = A * sy0 + B * sy1;
+        return [
+        Math.atan2(y, x) / d3_radians,
+        Math.atan2(z, Math.sqrt(x * x + y * y)) / d3_radians
+        ];
+    }
+
+    interpolate.distance = function() {
+        if (d == null) k = 1 / Math.sin(d = Math.acos(Math.max(-1, Math.min(1, sy0 * sy1 + cy0 * cy1 * Math.cos(x1 - x0)))));
+        return d;
+    };
+
+    interpolate.source = function(_) {
+        var cx0 = Math.cos(x0 = _[0] * d3_radians),
+            sx0 = Math.sin(x0);
+        cy0 = Math.cos(y0 = _[1] * d3_radians);
+        sy0 = Math.sin(y0);
+        kx0 = cy0 * cx0;
+        ky0 = cy0 * sx0;
+        d = null;
+        return interpolate;
+    };
+
+    interpolate.target = function(_) {
+        var cx1 = Math.cos(x1 = _[0] * d3_radians),
+            sx1 = Math.sin(x1);
+        cy1 = Math.cos(y1 = _[1] * d3_radians);
+        sy1 = Math.sin(y1);
+        kx1 = cy1 * cx1;
+        ky1 = cy1 * sx1;
+        d = null;
+        return interpolate;
+    };
+
+    return interpolate;
+    }
+</script>
+
+
+
+{% endblock content %}

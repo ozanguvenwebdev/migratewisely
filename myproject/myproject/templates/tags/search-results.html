@@ -1,0 +1,38 @@
+{% if results %}
+
+{% for post in results %}
+<a href="/post/{{post.url_name}}">
+    <div class="grid" style="height:450px !important;">
+        <div class="entry-media">
+            <img src="/media/{{post.detail_image}}" alt>
+        </div>
+        <div class="entry-date" style="margin-bottom:10px;border-bottom: 1px solid #000000;">
+            <h4 style="color:black;"><img src="/media/{{post.country.flag}}" width="45" style="border:1px solid #2b2e3a"></h4>
+            <span style="color:black;margin-top:2%;border-left: 1px solid #000000;">{{post.country.name}}</span>
+        </div>
+        <h3 style="margin-bottom:1%;"><a style="font-family:'Source Sans Pro', sans-serif" href="/post/{{post.url_name}}">{{post.header}} </a></h3>
+        <p><a style="font-family:'Source Sans Pro', sans-serif;color:grey" href="/post/{{post.url_name}}">{{post.short_expl}} </a></p>
+        <div class="tag">
+            <ul style="list-style-type: none;">
+                <li>{% for tag in post.tag.all %}<a href="/tag/{{tag.url_name}}">#{{tag.name}}</a> &nbsp;{% endfor %}</li>
+            </ul>
+        </div>
+    </div>
+</a>
+{% endfor %}
+
+{% else %}
+<section class="blog-pg-section  blog-pg-left-sidebar section-padding" id="migration-opportunities" style="padding:80px 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-sm-12">
+                <div class="blog-sidebar">
+                    <div class="widget search-widget" style="text-align:center;">
+                        <h3 style="font-size:1.3rem;text-transform:none;border:none;">Couldn't Find Any Related Article :(</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}

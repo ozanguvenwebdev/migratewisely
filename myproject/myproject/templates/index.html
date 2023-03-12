@@ -1,0 +1,540 @@
+{% extends 'base.html' %}
+{% load navbar %}
+{% load static %}
+{% load i18n %}
+
+{% get_available_languages as LANGUAGES %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info_list for LANGUAGES as languages %}
+
+{% block metatags %}
+    <title>Migrate Wisely</title>
+    <meta name="description" content="Seek migration opportunities based on their financial status, educational background, and some other specific conditions!">
+    <meta name="keywords" content="migration, immigration, visa, citizenship, greencard, citizen, migrate, immigrate, immigrant">
+{% endblock metatags %}
+
+
+{% block content %}
+
+<body>
+
+    <style>
+        @media only screen and (max-width: 1600px) {
+            #google1600pxmin {
+              display: none;
+            }
+          }
+    </style>
+    <!-- start page-wrapper -->
+    <div class="page-wrapper">
+
+        <!-- start preloader -->
+        <div class="preloader">
+            <div class="sk-folding-cube">
+                <div class="sk-cube1 sk-cube"></div>
+                <div class="sk-cube2 sk-cube"></div>
+                <div class="sk-cube4 sk-cube"></div>
+                <div class="sk-cube3 sk-cube"></div>
+            </div>
+        </div>
+        <!-- end preloader -->
+        
+
+        {% InnerNavbarTag %}
+
+        <style>
+            .zoom {
+            transition: transform .2s; /* Animation */
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+            }
+
+            .zoom:hover {
+            transform: scale(1.05);
+            }
+            @media only screen and (max-width: 991px) {
+                .mobil-suggest-article-margin {
+                  margin-top: 15% !important;
+                }
+              }
+        </style>
+        <style>
+            .about-section-s2 .img-holder:before {
+                background: none
+            }
+        </style>
+        <style>
+            @media only screen and (max-width: 991px) {
+                .margin-top-sicakgundem {
+                  margin-bottom: 10% !important;
+                }
+              }
+        </style>
+
+        <!-- start about-section-s2 -->
+        <section class="about-section-s2" style="background-image: linear-gradient(to bottom right, #ff4d00, #ffa882);padding-top:50px;padding-bottom:50px;">
+            <div class="container">
+                <div class="row">
+                    <div onclick="location.href = '/hot-topics/';"  class="col col-md-6 col-md-push-6 margin-top-sicakgundem">
+                        <div style="padding:5%;width:97%;border:2px solid black;background: #F27843 url('{% static 'assets/images/hottopic.jpg' %}') center;background-size:100%;">
+                            <div class="section-title-s2" style="padding:0;margin-bottom:20px;">
+                                {% comment %} {% if LANGUAGE_CODE == "ar" %}
+                                <span style="color:black;"><a href="/country/{{hotTopics.country.url_name}}" class="hvr-underline-from-left" style="color:black;">{{hotTopics.country.nameAr}}</a></span>
+                                {% elif LANGUAGE_CODE == "es" %}
+                                <span style="color:black;"><a href="/country/{{hotTopics.country.url_name}}" class="hvr-underline-from-left" style="color:black;">{{hotTopics.country.nameEs}}</a></span>
+                                {% elif LANGUAGE_CODE == "fr" %}
+                                <span style="color:black;"><a href="/country/{{hotTopics.country.url_name}}" class="hvr-underline-from-left" style="color:black;">{{hotTopics.country.nameFr}}</a></span>
+                                {% elif LANGUAGE_CODE == "tr" %}
+                                <span style="color:black;"><a href="/country/{{hotTopics.country.url_name}}" class="hvr-underline-from-left" style="color:black;">{{hotTopics.country.nameTr}}</a></span>
+                                {% elif LANGUAGE_CODE == "hi" %}
+                                <span style="color:black;"><a href="/country/{{hotTopics.country.url_name}}" class="hvr-underline-from-left" style="color:black;">{{hotTopics.country.nameHi}}</a></span>
+                                {% elif LANGUAGE_CODE == "vi" %}
+                                <span style="color:black;"><a href="/country/{{hotTopics.country.url_name}}" class="hvr-underline-from-left" style="color:black;">{{hotTopics.country.nameVi}}</a></span>
+                                {% elif LANGUAGE_CODE == "fa" %}
+                                <span style="color:black;"><a href="/country/{{hotTopics.country.url_name}}" class="hvr-underline-from-left" style="color:black;">{{hotTopics.country.nameFa}}</a></span>
+                                {% elif LANGUAGE_CODE == "ur" %}
+                                <span style="color:black;"><a href="/country/{{hotTopics.country.url_name}}" class="hvr-underline-from-left" style="color:black;">{{hotTopics.country.nameUr}}</a></span>
+                                {% else %}
+                                <span style="color:black;"><a href="/country/{{hotTopics.country.url_name}}" class="hvr-underline-from-left" style="color:black;">{{hotTopics.country}}</a></span>
+                                {% endif %} {% endcomment %}
+                                <h2 style="color:white;font-weight: 300;font-size: 2.3rem;margin:0;text-shadow: 0px 0px 10px black;"><a href="/hot-topics/" class="hvr-underline-from-left" style="color:white;">{% trans "Hot Topics" %}</a></h2>
+                            </div>
+                            <div class="about-content">
+                                {% comment %} {% if LANGUAGE_CODE == "ar" %}
+                                <h4 style="color:black;"><a href="/hot-topics/" style="color:black;">{{hotTopics.upperExplAr}} &nbsp;<i class="ti-arrow-right"></i></a></h4>
+                                {% elif LANGUAGE_CODE == "es" %}
+                                <h4 style="color:black;"><a href="/hot-topics/" style="color:black;">{{hotTopics.upperExplEs}} &nbsp;<i class="ti-arrow-right"></i></a></h4>
+                                {% elif LANGUAGE_CODE == "fr" %}
+                                <h4 style="color:black;"><a href="/hot-topics/" style="color:black;">{{hotTopics.upperExplFr}} &nbsp;<i class="ti-arrow-right"></i></a></h4>
+                                {% elif LANGUAGE_CODE == "tr" %}
+                                <h4 style="color:black;"><a href="/hot-topics/" style="color:black;">{{hotTopics.upperExplTr}} &nbsp;<i class="ti-arrow-right"></i></a></h4>
+                                {% elif LANGUAGE_CODE == "hi" %}
+                                <h4 style="color:black;"><a href="/hot-topics/" style="color:black;">{{hotTopics.upperExplHi}} &nbsp;<i class="ti-arrow-right"></i></a></h4>
+                                {% elif LANGUAGE_CODE == "vi" %}
+                                <h4 style="color:black;"><a href="/hot-topics/" style="color:black;">{{hotTopics.upperExplVi}} &nbsp;<i class="ti-arrow-right"></i></a></h4>
+                                {% elif LANGUAGE_CODE == "fa" %}
+                                <h4 style="color:black;"><a href="/hot-topics/" style="color:black;">{{hotTopics.upperExplFa}} &nbsp;<i class="ti-arrow-right"></i></a></h4>
+                                {% elif LANGUAGE_CODE == "ur" %}
+                                <h4 style="color:black;"><a href="/hot-topics/" style="color:black;">{{hotTopics.upperExplUr}} &nbsp;<i class="ti-arrow-right"></i></a></h4>
+                                {% else %}
+                                <h4 style="color:black;"><a href="/hot-topics/" style="color:black;">{{hotTopics.upperExpl}} &nbsp;<i class="ti-arrow-right"></i></a></h4>
+                                {% endif %} {% endcomment %}
+                                <h4 style="color:white;text-shadow: 0px 0px 10px black;"><a href="/hot-topics/" style="color:white;">Keep up to date with the latest migration news!  &nbsp;<i class="ti-arrow-right"></i></a></h4>
+                                {% comment %} <a href="/post/{{hotTopics.article.url_name}}" class="hvr-underline-from-left" style="color:black;">{% trans "Read More" %}</a> {% endcomment %}
+                            </div>
+                            <a href="/hot-topics/">
+                                <div class="img-holder zoom" style="margin-top:30px;text-align:center;">
+                                    <img src="{% static 'assets/images/globe.png' %}" style="width:53%;" alt>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div onclick="location.href = '/forum/';" class="col col-md-6 col-md-pull-6">
+                        <div style="background: #97daf7;padding: 5%; width:97%;">
+                            <div class="section-title-s2" style="margin-bottom:20px;padding-top:0;">
+                                {% comment %} <span style="color:black;">MW Forum</span> {% endcomment %}
+                                <h2 style="color:black;font-weight: 300;font-size: 2.3rem;margin-top:0;"><a href="/forum/" class="hvr-underline-from-left" style="color:black;">{% trans "Discover Our Forum" %}!</a></h2>
+                            </div>
+                            <div class="about-content">
+                                <h4 style="color:black;"><a href="/forum/" style="color:black;">{% trans "Read immigration stories, ask questions and share your experience" %}! &nbsp;<i class="ti-arrow-right"></i></a></h4>
+                            </div>
+                            <a href="/forum/">
+                                <div class="img-holder zoom" style="margin-top:30px;text-align:center;">
+                                    <img src="{% static 'assets/images/forum.png' %}" style="width:70%;margin-top:2%;" alt>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {% comment %} <div class="col col-md-6 col-md-pull-6">
+                        <div class="img-holder">
+                            <img src="{% static 'assets/images/nzht.jpg' %}" alt>
+                        </div>
+                    </div> {% endcomment %}
+                </div>
+            </div> <!-- end container -->
+        </section>
+        <!-- end about-section-s2 -->
+
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1585101111668317"
+                crossorigin="anonymous"></script>
+        <ins class="adsbygoogle"
+                style="display:block; text-align:center;"
+                data-ad-layout="in-article"
+                data-ad-format="fluid"
+                data-ad-client="ca-pub-1585101111668317"
+                data-ad-slot="4543312566"></ins>
+        <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        {% comment %} <div id="google1600pxmin">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1585101111668317"
+                crossorigin="anonymous"></script>
+            <ins class="adsbygoogle"
+                style="display:inline-block;width:360px;height:800px;position:absolute;left:0;"
+                data-ad-client="ca-pub-1585101111668317"
+                data-ad-slot="3377817975"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>  {% endcomment %}
+
+        <section class="blog-pg-section  blog-pg-left-sidebar section-padding" id="migration-opportunities" style="padding:60px 0;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="blog-sidebar">
+                            <div class="widget search-widget">
+                                <h3 style="font-size:1.8rem;text-transform:none;margin: 0 0 0.7em;border-bottom:1px solid #2b2e3a;">{% trans "Search By Content" %}</h3>
+                                <form>{% csrf_token %}
+                                    <div>
+                                        <input type="text" hx-post="{% url 'app:search-content' %}" hx-target='#results' hx-trigger="keyup changed delay:100ms" name="search" class="form-control" placeholder="Ex: Green Card" style="background:#f2784326;">
+                                        <button style="pointer-events:none;" ><i class="ti-search"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="blog-section section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-md-6">
+                        <div class="section-title-s2">
+                            <span>{% trans "Posts" %}</span>
+                            {% if LANGUAGE_CODE == "ar" %}
+                            <h2 style="font-weight:500;font-size:1.8rem;">فرص الهجرة</h2>
+                            {% elif LANGUAGE_CODE == "es" %}
+                            <h2 style="font-weight:500;font-size:1.8rem;">Oportunidades de Migracións</h2>
+                            {% elif LANGUAGE_CODE == "fa" %}
+                            <h2 style="font-weight:500;font-size:1.8rem;">فرصت های مهاجرت</h2>
+                            {% elif LANGUAGE_CODE == "fr" %}
+                            <h2 style="font-weight:500;font-size:1.8rem;">Opportunités de migration</h2>
+                            {% elif LANGUAGE_CODE == "hi" %}
+                            <h2 style="font-weight:500;font-size:1.8rem;">प्रवास के अवसर</h2>
+                            {% elif LANGUAGE_CODE == "tr" %}
+                            <h2 style="font-weight:500;font-size:1.8rem;">Göç Fırsatları</h2>
+                            {% elif LANGUAGE_CODE == "ur" %}
+                            <h2 style="font-weight:500;font-size:1.8rem;">نقل مکانی کے مواقع</h2>
+                            {% elif LANGUAGE_CODE == "vi" %}
+                            <h2 style="font-weight:500;font-size:1.8rem;">Cơ hội di cư</h2>
+                            {% else %}
+                            <h2 style="font-weight:500;font-size:1.8rem;">Migration Opportunities</h2>
+                            {% endif %}
+                        </div>  
+                    </div>                
+                    <div class="col col-md-6">
+                        <div class="section-title-text">
+                            {% if LANGUAGE_CODE == "ar" %}
+                            <p style="color:black;">تحقق مما إذا كان هناك خيار تأشيرة مناسب لك</p>
+                            {% elif LANGUAGE_CODE == "es" %}
+                            <p style="color:black;">Compruebe si hay una opción de visa adecuada para usted.</p>
+                            {% elif LANGUAGE_CODE == "fa" %}
+                            <p style="color:black;">بررسی کنید که آیا گزینه ویزای مناسب برای شما وجود دارد یا خیر</p>
+                            {% elif LANGUAGE_CODE == "fr" %}
+                            <p style="color:black;">Vérifiez s'il existe une option de visa appropriée pour vous.</p>
+                            {% elif LANGUAGE_CODE == "hi" %}
+                            <p style="color:black;">जांचें कि क्या आपके लिए उपयुक्त वीज़ा विकल्प है.</p>
+                            {% elif LANGUAGE_CODE == "tr" %}
+                            <p style="color:black;">Sizin için uygun bir vize seçeneği olup olmadığını kontrol edin.</p>
+                            {% elif LANGUAGE_CODE == "ur" %}
+                            <p style="color:black;">چیک کریں کہ آیا آپ کے لیے ویزا کا کوئی مناسب آپشن موجود ہے۔</p>
+                            {% elif LANGUAGE_CODE == "vi" %}
+                            <p style="color:black;">Kiểm tra xem có lựa chọn thị thực phù hợp cho bạn không.</p>
+                            {% else %}
+                            <p style="color:black;">Discover opportunities based on your background</p>
+                            {% endif %}
+                        </div>  
+                    </div>                
+                </div>
+                <div class="row">
+                    <div class="col col-xs-12">
+                        <div class="blog-grids clearfix">
+                            <div id="results">
+                                {% for post in posts %}
+                                <a href="/post/{{post.url_name}}">
+                                <div class="grid" style="height:470px !important;">
+                                    <div class="entry-media">
+                                        <img src="/media/{{post.detail_image}}" alt>
+                                    </div>
+                                    {% if LANGUAGE_CODE == "ar" %}
+                                    <div class="entry-date" style="border-bottom: 1px solid #000000;background:#f2784326;padding-left: 4%;">
+                                        <h4 style="color:black;"><img src="/media/{{post.country.flag}}" width="45"></h4>
+                                        <span style="color:black;margin-top:2%;border-left: 1px solid #000000;">{{post.country.nameAr}}</span>
+                                    </div>
+                                    <h3 style="margin-bottom:1%;"><a style="font-family:'Source Sans Pro', sans-serif" href="/post/{{post.url_name}}">{{post.headerAr}} </a></h3>
+                                    <p><a style="font-family:'Source Sans Pro', sans-serif;color:grey" href="/post/{{post.url_name}}">{{post.short_explAr}} </a></p>
+                                    <div class="tag">
+                                        <ul style="list-style-type: none;">
+                                            <li>{% for tag in post.tag.all %}<a href="/tag/{{tag.url_name}}">{{tag.nameAr}}#</a> &nbsp;{% endfor %}</li>
+                                        </ul>
+                                    </div>
+                                    {% elif LANGUAGE_CODE == "es" %}
+                                    <div class="entry-date" style="border-bottom: 1px solid #000000;background:#f2784326;padding-left: 4%;">
+                                        <h4 style="color:black;"><img src="/media/{{post.country.flag}}" width="45"></h4>
+                                        <span style="color:black;margin-top:2%;border-left: 1px solid #000000;">{{post.country.nameEs}}</span>
+                                    </div>
+                                    <h3 style="margin-bottom:1%;"><a style="font-family:'Source Sans Pro', sans-serif" href="/post/{{post.url_name}}">{{post.headerEs}} </a></h3>
+                                    <p><a style="font-family:'Source Sans Pro', sans-serif;color:grey" href="/post/{{post.url_name}}">{{post.short_explEs}} </a></p>
+                                    <div class="tag">
+                                        <ul style="list-style-type: none;">
+                                            <li>{% for tag in post.tag.all %}<a href="/tag/{{tag.url_name}}">#{{tag.nameEs}}</a> &nbsp;{% endfor %}</li>
+                                        </ul>
+                                    </div>
+                                    {% elif LANGUAGE_CODE == "fa" %}
+                                    <div class="entry-date" style="border-bottom: 1px solid #000000;background:#f2784326;padding-left: 4%;">
+                                        <h4 style="color:black;"><img src="/media/{{post.country.flag}}" width="45"></h4>
+                                        <span style="color:black;margin-top:2%;border-left: 1px solid #000000;">{{post.country.nameFa}}</span>
+                                    </div>
+                                    <h3 style="margin-bottom:1%;"><a style="font-family:'Source Sans Pro', sans-serif" href="/post/{{post.url_name}}">{{post.headerFa}} </a></h3>
+                                    <p><a style="font-family:'Source Sans Pro', sans-serif;color:grey" href="/post/{{post.url_name}}">{{post.short_explFa}} </a></p>
+                                    <div class="tag">
+                                        <ul style="list-style-type: none;">
+                                            <li>{% for tag in post.tag.all %}<a href="/tag/{{tag.url_name}}">{{tag.nameFa}}#</a> &nbsp;{% endfor %}</li>
+                                        </ul>
+                                    </div>
+                                    {% elif LANGUAGE_CODE == "fr" %}
+                                    <div class="entry-date" style="border-bottom: 1px solid #000000;background:#f2784326;padding-left: 4%;">
+                                        <h4 style="color:black;"><img src="/media/{{post.country.flag}}" width="45"></h4>
+                                        <span style="color:black;margin-top:2%;border-left: 1px solid #000000;">{{post.country.nameFr}}</span>
+                                    </div>
+                                    <h3 style="margin-bottom:1%;"><a style="font-family:'Source Sans Pro', sans-serif" href="/post/{{post.url_name}}">{{post.headerFr}} </a></h3>
+                                    <p><a style="font-family:'Source Sans Pro', sans-serif;color:grey" href="/post/{{post.url_name}}">{{post.short_explFr}} </a></p>
+                                    <div class="tag">
+                                        <ul style="list-style-type: none;">
+                                            <li>{% for tag in post.tag.all %}<a href="/tag/{{tag.url_name}}">#{{tag.nameFr}}</a> &nbsp;{% endfor %}</li>
+                                        </ul>
+                                    </div>
+                                    {% elif LANGUAGE_CODE == "tr" %}
+                                    <div class="entry-date" style="border-bottom: 1px solid #000000;background:#f2784326;padding-left: 4%;">
+                                        <h4 style="color:black;"><img src="/media/{{post.country.flag}}" width="45"></h4>
+                                        <span style="color:black;margin-top:2%;border-left: 1px solid #000000;">{{post.country.nameTr}}</span>
+                                    </div>
+                                    <h3 style="margin-bottom:1%;"><a style="font-family:'Source Sans Pro', sans-serif" href="/post/{{post.url_name}}">{{post.headerTr}} </a></h3>
+                                    <p><a style="font-family:'Source Sans Pro', sans-serif;color:grey" href="/post/{{post.url_name}}">{{post.short_explTr}} </a></p>
+                                    <div class="tag">
+                                        <ul style="list-style-type: none;">
+                                            <li>{% for tag in post.tag.all %}<a href="/tag/{{tag.url_name}}">#{{tag.nameTr}}</a> &nbsp;{% endfor %}</li>
+                                        </ul>
+                                    </div>
+                                    {% elif LANGUAGE_CODE == "hi" %}
+                                    <div class="entry-date" style="border-bottom: 1px solid #000000;background:#f2784326;padding-left: 4%;">
+                                        <h4 style="color:black;"><img src="/media/{{post.country.flag}}" width="45"></h4>
+                                        <span style="color:black;margin-top:2%;border-left: 1px solid #000000;">{{post.country.nameHi}}</span>
+                                    </div>
+                                    <h3 style="margin-bottom:1%;"><a style="font-family:'Source Sans Pro', sans-serif" href="/post/{{post.url_name}}">{{post.headerHi}} </a></h3>
+                                    <p><a style="font-family:'Source Sans Pro', sans-serif;color:grey" href="/post/{{post.url_name}}">{{post.short_explHi}} </a></p>
+                                    <div class="tag">
+                                        <ul style="list-style-type: none;">
+                                            <li>{% for tag in post.tag.all %}<a href="/tag/{{tag.url_name}}">#{{tag.nameHi}}</a> &nbsp;{% endfor %}</li>
+                                        </ul>
+                                    </div>
+                                    {% elif LANGUAGE_CODE == "vi" %}
+                                    <div class="entry-date" style="border-bottom: 1px solid #000000;background:#f2784326;padding-left: 4%;">
+                                        <h4 style="color:black;"><img src="/media/{{post.country.flag}}" width="45"></h4>
+                                        <span style="color:black;margin-top:2%;border-left: 1px solid #000000;">{{post.country.nameVi}}</span>
+                                    </div>
+                                    <h3 style="margin-bottom:1%;"><a style="font-family:'Source Sans Pro', sans-serif" href="/post/{{post.url_name}}">{{post.headerVi}} </a></h3>
+                                    <p><a style="font-family:'Source Sans Pro', sans-serif;color:grey" href="/post/{{post.url_name}}">{{post.short_explVi}} </a></p>
+                                    <div class="tag">
+                                        <ul style="list-style-type: none;">
+                                            <li>{% for tag in post.tag.all %}<a href="/tag/{{tag.url_name}}">#{{tag.nameVi}}</a> &nbsp;{% endfor %}</li>
+                                        </ul>
+                                    </div>
+                                    {% elif LANGUAGE_CODE == "ur" %}
+                                    <div class="entry-date" style="border-bottom: 1px solid #000000;background:#f2784326;padding-left: 4%;">
+                                        <h4 style="color:black;"><img src="/media/{{post.country.flag}}" width="45"></h4>
+                                        <span style="color:black;margin-top:2%;border-left: 1px solid #000000;">{{post.country.nameUr}}</span>
+                                    </div>
+                                    <h3 style="margin-bottom:1%;"><a style="font-family:'Source Sans Pro', sans-serif" href="/post/{{post.url_name}}">{{post.headerUr}} </a></h3>
+                                    <p><a style="font-family:'Source Sans Pro', sans-serif;color:grey" href="/post/{{post.url_name}}">{{post.short_explUr}} </a></p>
+                                    <div class="tag">
+                                        <ul style="list-style-type: none;">
+                                            <li>{% for tag in post.tag.all %}<a href="/tag/{{tag.url_name}}">{{tag.nameUr}}#</a> &nbsp;{% endfor %}</li>
+                                        </ul>
+                                    </div>
+                                    {% else %}
+                                    <div class="entry-date" style="border-bottom: 1px solid #000000;background:#f2784326;padding-left: 4%;">
+                                        <h4 style="color:black;"><img src="/media/{{post.country.flag}}" width="45"></h4>
+                                        <span style="color:black;margin-top:2%;border-left: 1px solid #000000;">{{post.country.name}}</span>
+                                    </div>
+                                    <h3 style="margin-bottom:1%;"><a style="font-family:'Source Sans Pro', sans-serif" href="/post/{{post.url_name}}">{{post.header}} </a></h3>
+                                    <p><a style="font-family:'Source Sans Pro', sans-serif;color:grey" href="/post/{{post.url_name}}">{{post.short_expl}} </a></p>
+                                    <div class="tag">
+                                        <ul style="list-style-type: none;">
+                                            <li>{% for tag in post.tag.all %}<a href="/tag/{{tag.url_name}}">#{{tag.name}}</a> &nbsp;{% endfor %}</li>
+                                        </ul>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                </a>
+                                {% endfor %}
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+
+        <!-- start cta-with-team-section -->
+        <section class="cta-with-team-section section-padding" style="padding:80px 0 70px 0;">
+            <div class="bg" style="height:100% !important;background: url(/media/blogs/bg.png) center center/auto no-repeat local;"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col col-lg-6 col-md-6 col-sm-12">
+                        <div class="cta-content">
+                            <p>
+                            {% for tag in tags %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                <a href="/tag/{{tag.url_name}}" style="color:#00559f;font-size:1.05rem;line-height:1.9em;">#{{tag.nameAr}} &nbsp;</a>
+                                {% elif LANGUAGE_CODE == "fa" %}
+                                <a href="/tag/{{tag.url_name}}" style="color:#00559f;font-size:1.05rem;line-height:1.9em;">#{{tag.nameFa}} &nbsp;</a>
+                                {% elif LANGUAGE_CODE == "es" %}
+                                <a href="/tag/{{tag.url_name}}" style="color:#00559f;font-size:1.05rem;line-height:1.9em;">#{{tag.nameEs}} &nbsp;</a>
+                                {% elif LANGUAGE_CODE == "fr" %}
+                                <a href="/tag/{{tag.url_name}}" style="color:#00559f;font-size:1.05rem;line-height:1.9em;">#{{tag.nameFr}} &nbsp;</a>
+                                {% elif LANGUAGE_CODE == "tr" %}
+                                <a href="/tag/{{tag.url_name}}" style="color:#00559f;font-size:1.05rem;line-height:1.9em;">#{{tag.nameTr}} &nbsp;</a>
+                                {% elif LANGUAGE_CODE == "hi" %}
+                                <a href="/tag/{{tag.url_name}}" style="color:#00559f;font-size:1.05rem;line-height:1.9em;">#{{tag.nameHi}} &nbsp;</a>
+                                {% elif LANGUAGE_CODE == "vi" %}
+                                <a href="/tag/{{tag.url_name}}" style="color:#00559f;font-size:1.05rem;line-height:1.9em;">#{{tag.nameVi}} &nbsp;</a>
+                                {% elif LANGUAGE_CODE == "ur" %}
+                                <a href="/tag/{{tag.url_name}}" style="color:#00559f;font-size:1.05rem;line-height:1.9em;">#{{tag.nameUr}} &nbsp;</a>
+                                {% else %}
+                                <a href="/tag/{{tag.url_name}}" style="color:#00559f;font-size:1.05rem;line-height:1.9em;">#{{tag}} &nbsp;</a>
+                                {% endif %}
+                            {% endfor %} 
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col col-lg-6 col-md-6 col-sm-12 mobil-suggest-article-margin" style="margin-top:3%;">
+                        <a href="/random-article/"><div class="cta-content zoom">
+                            <i class="ti-control-shuffle" style="color: #2b2e3a;border: 1px solid black;border-radius: 50%;font-size: 50px;padding: 2%;"></i>
+                            <h3 style="color:#2b2e3a;margin-top: 30px;font-size: 2.1rem;">{% trans "Suggest Me A Random Article" %}</h3>
+                        </div></a>
+                    </div>
+                </div>
+            </div> <!-- end container -->
+        </section>
+        <!-- end cta-with-team-section -->
+        <!-- start about-section-s2 -->
+        {% comment %} <section class="about-section-s2" style="background-color:white;padding-top:90px;padding-bottom:95px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-md-6 col-md-push-6">
+                        <div class="section-title-s2">
+                            <span style="color:black;"><a href="/forum/" class="hvr-underline-from-left" style="color:black;">{% trans "See our forum service" %}</a></span>
+                            <h2 style="color:black;font-weight: 300;"><a href="/forum/" class="hvr-underline-from-left" style="color:black;">{% trans "Discover forum" %}!</a></h2>
+                        </div>
+                        <div class="about-content">
+                            <h4 style="color:black;">{% trans "Read immigration stories, ask questions and share your information" %}</h4>
+                            <p style="color:black;">Peacefully between its four familiar forums a collection of textile samples lay spread out on the table - Samsa was a travelling salesman  and above it there hung a piture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame. It showed a lady fitted out with a fur hat and fur boa who sat upright, raising a heavy fur muff that covered the whole of her lower arm towards the viewer. Gregor then turned to look out the window</p>
+                        </div>
+                    </div>
+                    <div class="col col-md-6 col-md-pull-6">
+                        <div class="img-holder">
+                            <img src="{% static 'assets/images/ill.jpg' %}" alt>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end container -->
+        </section> {% endcomment %}
+        <!-- end about-section-s2 -->
+        <!-- start testimonials-section -->
+        {% comment %} <section class="testimonials-section section-padding" style="background-color:#97daf7;padding:40px 0;">
+            <h2 class="hidden">Testimonials</h2>
+            <div class="container">
+                <div class="row">
+                    <div class="col col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <div class="testimonials-area">
+                            <p style="color:black;margin:0 0 0.3em;">"Peace At Home Peace In The World"</p>
+                            <span style="color:black;font-weight:bold;" class="quoter" lang="tr">- Kemal Atatürk</span>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end container -->
+        </section>
+        <!-- end testimonials-section --> {% endcomment %}
+
+        <!-- start project-sigle-section -->
+        <section class="project-sigle-section section-padding" style="padding-top:0;background: white;">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-xs-12">
+                        <div class="project-single-content">
+                            <div class="content-area">
+                                <div class="challange-solution-section">
+                                    <div class="panel-group theme-accordion-s1" id="accordion">
+                                        {% for info in quick_infos %}
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                {% if LANGUAGE_CODE == "ar" %}
+                                                <a {% if not forloop.first %} style="text-align:right !important;" class="collapsed" {% endif %} style="text-align:right !important;" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{info.id}}">{{info.short_explAr}}</a>
+                                                {% elif LANGUAGE_CODE == "es" %}
+                                                <a {% if not forloop.first %} class="collapsed" {% endif %} data-toggle="collapse" data-parent="#accordion" href="#collapse-{{info.id}}">{{info.short_explEs}}</a>
+                                                {% elif LANGUAGE_CODE == "fa" %}
+                                                <a {% if not forloop.first %} style="text-align:right !important;" class="collapsed" {% endif %} style="text-align:right !important;" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{info.id}}">{{info.short_explFa}}</a>
+                                                {% elif LANGUAGE_CODE == "fr" %}
+                                                <a {% if not forloop.first %} class="collapsed" {% endif %} data-toggle="collapse" data-parent="#accordion" href="#collapse-{{info.id}}">{{info.short_explFr}}</a>
+                                                {% elif LANGUAGE_CODE == "tr" %}
+                                                <a {% if not forloop.first %} class="collapsed" {% endif %} data-toggle="collapse" data-parent="#accordion" href="#collapse-{{info.id}}">{{info.short_explTr}}</a>
+                                                {% elif LANGUAGE_CODE == "hi" %}
+                                                <a {% if not forloop.first %} class="collapsed" {% endif %} data-toggle="collapse" data-parent="#accordion" href="#collapse-{{info.id}}">{{info.short_explHi}}</a>
+                                                {% elif LANGUAGE_CODE == "vi" %}
+                                                <a {% if not forloop.first %} class="collapsed" {% endif %} data-toggle="collapse" data-parent="#accordion" href="#collapse-{{info.id}}">{{info.short_explVi}}</a>
+                                                {% elif LANGUAGE_CODE == "ur" %}
+                                                <a {% if not forloop.first %} style="text-align:right !important;" class="collapsed" {% endif %} style="text-align:right !important;" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{info.id}}">{{info.short_explUr}}</a>
+                                                {% else %}
+                                                <a {% if not forloop.first %} class="collapsed" {% endif %} data-toggle="collapse" data-parent="#accordion" href="#collapse-{{info.id}}">{{info.short_expl}}</a>
+                                                {% endif %}
+                                            </div>
+                                            <div id="collapse-{{info.id}}" class="panel-collapse collapse {% if forloop.first %}in{% endif %}">
+                                                <div class="panel-body">
+                                                    {% if LANGUAGE_CODE == "ar" %}
+                                                    <p style="text-align:right;">{{info.explAr|safe}}</p>
+                                                    {% elif LANGUAGE_CODE == "es" %}
+                                                    <p>{{info.explEs|safe}}</p>
+                                                    {% elif LANGUAGE_CODE == "fa" %}
+                                                    <p style="text-align:right;">{{info.explFa|safe}}</p>
+                                                    {% elif LANGUAGE_CODE == "fr" %}
+                                                    <p>{{info.explFr|safe}}</p>
+                                                    {% elif LANGUAGE_CODE == "tr" %}
+                                                    <p>{{info.explTr|safe}}</p>
+                                                    {% elif LANGUAGE_CODE == "vi" %}
+                                                    <p>{{info.explVi|safe}}</p>
+                                                    {% elif LANGUAGE_CODE == "hi" %}
+                                                    <p>{{info.explHi|safe}}</p>
+                                                    {% elif LANGUAGE_CODE == "ur" %}
+                                                    <p style="text-align:right;">{{info.explUr|safe}}</p>
+                                                    {% else %}
+                                                    <p>{{info.expl|safe}}</p>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end container -->
+        </section>
+        <!-- end project-sigle-section -->
+
+        
+        {% FooterTag %}
+
+    </div>
+    <!-- end of page-wrapper -->
+
+</body>
+
+{% endblock content %}

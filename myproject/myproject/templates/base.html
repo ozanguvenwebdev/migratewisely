@@ -1,0 +1,256 @@
+{% load static %}
+{% load i18n %}
+{% load compress %}
+
+{% get_available_languages as LANGUAGES %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info_list for LANGUAGES as languages %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
+<!DOCTYPE html>
+<html lang="{{LANGUAGE_CODE}}">
+<head>
+    <script async custom-element="amp-auto-ads"
+            src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1585101111668317"
+     crossorigin="anonymous"></script>
+
+    {% block metatags %}{% endblock metatags %}
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Migrate Wisely">
+    
+    {% compress css %}
+    <link href="{% static 'assets/css/themify-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/flaticon.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/owl.carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/owl.theme.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/slick.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/slick-theme.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/swiper.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/owl.transitions.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/jquery.fancybox.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/odometer-theme-default.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/images/fav.png' %}">
+    {% endcompress %}
+    <!--HTMX-->
+    <script src="https://unpkg.com/htmx.org@1.8.0" integrity="sha384-cZuAZ+ZbwkNRnrKi05G/fjBX+azI9DNOkNYysZ0I/X5ZFgsmMiBXgDZof30F5ofc" crossorigin="anonymous"></script>
+    <!--HTMX-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.css">
+
+    <link rel="stylesheet" href="{% static 'font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GP20KY9NY6"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GP20KY9NY6');
+    </script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.1/css/hover-min.css" integrity="sha512-SJw7jzjMYJhsEnN/BuxTWXkezA2cRanuB8TdCNMXFJjxG9ZGSKOX5P3j03H6kdMxalKHZ7vlBMB4CagFP/de0A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<style>
+    .header-style-1:before, .header-style-2:before, .header-style-3:before{
+        background:none;
+    }
+    html{scroll-behavior: smooth;}
+    /* Works on Firefox */
+    * {
+    scrollbar-width: thin;
+    scrollbar-color: #97daf7 white;
+    }
+
+    /* Works on Chrome, Edge, and Safari */
+    *::-webkit-scrollbar {
+    width: 12px;
+    }
+
+    *::-webkit-scrollbar-track {
+    background: white;
+    }
+
+    *::-webkit-scrollbar-thumb {
+    background-color: #97daf7;
+    border-radius: 20px;
+    border: 3px solid white;
+    }
+
+
+    .hvr-underline-from-left:before{background: #000 !important;height: 1px !important;}
+    .hvr-underline-from-right:before{background: #000 !important;height: 1px !important;}
+    .hvr-underline-from-center:before{background: #fff !important;height: 1px !important;}
+
+
+    @media only screen and (max-width: 991px) {
+        .mobil-baslik-display-none {
+          display:none !important;
+        }
+      }
+</style>
+
+
+
+
+
+<style>
+
+  .board {
+    {% comment %} --deg: 5deg; {% endcomment %}
+    font-size: 3rem;
+    padding: 0.75em 1.25em;
+    background: #97daf7;
+    color: #fff;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    position: absolute;
+    top: 35%;
+    left: 32%;
+    text-align: center;
+    
+  }
+
+  @media screen and (min-width: 480px) {
+    .board {
+      font-size: 4rem;
+    }
+  }
+  .board h1 {
+    margin: 0;
+    font-size: inherit;
+  }
+
+  #theBoard {
+    display:none;
+  }
+
+</style>
+
+<div id="theBoard" class="board" style="z-index:99999;">
+  <h1>Under Construction</h1>
+</div>
+
+
+<style>
+  .btn-info {
+  color: #fff;
+  background-color: #F27843;
+  border-color: #F27843;}
+</style>
+
+{% if LANGUAGE_CODE == "en" %}
+<!-- START Bootstrap-Cookie-Alert -->
+<div class="alert text-center cookiealert" role="alert" style="padding:20px;font-size:1.1rem;background: #000000b0;">
+  <b>Do you like cookies?</b> &#x1F36A; We use cookies to ensure you get the best experience on our website. <a href="{% url 'app:cookie-policy' %}" target="_blank" style="color:#F27843;">Learn more</a>
+
+  <button type="button" class="btn btn-info btn-sm acceptcookies" style="font-size:1.1rem;">
+      I agree
+  </button>
+</div>
+<!-- END Bootstrap-Cookie-Alert -->
+{% else %}
+<!-- START Bootstrap-Cookie-Alert -->
+<div class="alert text-center cookiealert" role="alert" style="padding:20px;font-size:1.1rem;background: #000000b0;">
+  <b>Çerez sever misin?</b> &#x1F36A; Web sitemizin en iyi deneyimi sunduğundan emin olmak için çerez kullanıyoruz. <a href="{% url 'app:cookie-policy' %}" target="_blank" style="color:#F27843;">Daha fazla</a>
+
+  <button type="button" class="btn btn-info btn-sm acceptcookies" style="font-size:1.1rem;">
+      Anladım
+  </button>
+</div>
+<!-- END Bootstrap-Cookie-Alert -->
+{% endif %}
+
+
+{% block content %}{% endblock content %}
+
+
+    {% compress js %}
+    <!-- All JavaScript files
+    ================================================== -->
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugins for this template -->
+    <script src="{% static 'assets/js/jquery-plugin-collection.js' %}"></script>
+
+    <!-- Custom script for this template -->
+    <script src="{% static 'assets/js/script.js' %}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% endcompress %}
+
+
+    {% if messages %}
+        {% for message in messages %}
+        <script>
+
+            {% if 'settings' in request.path %}
+            let timerInterval
+            Swal.fire({
+            icon: '{{message.tags}}',
+            title: '{{message}}',
+            timer: 7000,
+            timerProgressBar: true,
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            showConfirmButton: true,
+            })
+
+
+            {% else %}
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 7000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              Toast.fire({
+                icon: '{{message.tags}}',
+                
+                title: '{{message}}'
+              })
+
+
+            {% endif %}
+        </script>
+        {% endfor %}
+    {% endif %}
+
+
+    <script>
+      var showBoard = function () {
+        //	var startTimer = Date.now();
+        //	var endTimer = startTimer+900000;
+        //if(startTimer<endTimer){
+        document.getElementById("theBoard").style.display = "block";
+        setTimeout(function () {
+          document.getElementById("theBoard").style.display = "none";
+        }, 5000);
+        };
+      //}else{document.getElementById("userAsCat").style.display="none";}
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
+
+
+</html>

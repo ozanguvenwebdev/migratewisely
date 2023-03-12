@@ -1,0 +1,214 @@
+{% load static %}
+{% load i18n %}
+
+{% get_available_languages as LANGUAGES %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info_list for LANGUAGES as languages %}
+
+<style>
+    @media only screen and (max-width: 991px) {
+        .hamburger-revised {
+          margin-left: 0 !important;
+        }
+        .hamburger-dil-profil-revise{position:relative !important;right:0 !important;}
+        .lang-form-padding{padding-left:17% !important;}
+      }
+</style>
+
+<!-- Start header -->
+<header id="header" class="site-header header-style-3">
+    <nav class="navigation navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="open-btn">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><img src="{% static 'assets/images/logo.png' %}" style="max-width:200px;" alt></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navigation-holder">
+                <button class="close-navbar"><i class="ti-close"></i></button>
+                <ul class="nav navbar-nav hamburger-revised" style="margin-left:-10%;">
+                    <li><a href="/">{% trans "Homepage" %}</a></li>
+                    <li>
+                        <a href="/hot-topics/">{% trans "Hot Topics" %}</a>
+                    </li>
+                    {% comment %} <li class="menu-item-has-children"> {% endcomment %}
+                    <li class="menu-item-has-children">
+                        <a href="#">{% trans "Countries" %} +</a>
+                            <ul class="sub-menu">
+                                {% for continent in continents %}
+                                <li class="menu-item-has-children">
+                                    {% if LANGUAGE_CODE == "ar" %}
+                                    <a href="#Level3">{{continent.nameAr}}</a>
+                                    {% elif LANGUAGE_CODE == "es" %}
+                                    <a href="#Level3">{{continent.nameEs}}</a>
+                                    {% elif LANGUAGE_CODE == "fa" %}
+                                    <a href="#Level3">{{continent.nameFa}}</a>
+                                    {% elif LANGUAGE_CODE == "fr" %}
+                                    <a href="#Level3">{{continent.nameFr}}</a>
+                                    {% elif LANGUAGE_CODE == "tr" %}
+                                    <a href="#Level3">{{continent.nameTr}}</a>
+                                    {% elif LANGUAGE_CODE == "hi" %}
+                                    <a href="#Level3">{{continent.nameHi}}</a>
+                                    {% elif LANGUAGE_CODE == "vi" %}
+                                    <a href="#Level3">{{continent.nameVi}}</a>
+                                    {% elif LANGUAGE_CODE == "ur" %}
+                                    <a href="#Level3">{{continent.nameUr}}</a>
+                                    {% else %}
+                                    <a href="#Level3">{{continent}}</a>
+                                    {% endif %}
+                                    <ul class="sub-menu">
+                                        {% for country in countries %}
+                                            {% if country.continent == continent %}
+                                                {% if LANGUAGE_CODE == "ar" %}
+                                                <li><a href="/country/{{country.url_name}}">{{country.nameAr}}</a></li>
+                                                {% elif LANGUAGE_CODE == "es" %}
+                                                <li><a href="/country/{{country.url_name}}">{{country.nameEs}}</a></li>
+                                                {% elif LANGUAGE_CODE == "fa" %}
+                                                <li><a href="/country/{{country.url_name}}">{{country.nameFa}}</a></li>
+                                                {% elif LANGUAGE_CODE == "fr" %}
+                                                <li><a href="/country/{{country.url_name}}">{{country.nameFr}}</a></li>
+                                                {% elif LANGUAGE_CODE == "tr" %}
+                                                <li><a href="/country/{{country.url_name}}">{{country.nameTr}}</a></li>
+                                                {% elif LANGUAGE_CODE == "hi" %}
+                                                <li><a href="/country/{{country.url_name}}">{{country.nameHi}}</a></li>
+                                                {% elif LANGUAGE_CODE == "vi" %}
+                                                <li><a href="/country/{{country.url_name}}">{{country.nameVi}}</a></li>
+                                                {% elif LANGUAGE_CODE == "ur" %}
+                                                <li><a href="/country/{{country.url_name}}">{{country.nameUr}}</a></li>
+                                                {% else %}
+                                                <li><a href="/country/{{country.url_name}}">{{country}}</a></li>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </a>
+                    </li>
+                    <li class="menu-item-has-children">
+                        <a href="#">{% trans "Migration Categories" %} +</a>
+                        <ul class="sub-menu">
+                            {% for category in categories %}
+                            <li>
+                                {% if LANGUAGE_CODE == "ar" %}
+                                <a href="/category/{{category.url_name}}">{{category.nameAr}}</a>
+                                {% elif LANGUAGE_CODE == "es" %}
+                                <a href="/category/{{category.url_name}}">{{category.nameEs}}</a>
+                                {% elif LANGUAGE_CODE == "fa" %}
+                                <a href="/category/{{category.url_name}}">{{category.nameFa}}</a>
+                                {% elif LANGUAGE_CODE == "fr" %}
+                                <a href="/category/{{category.url_name}}">{{category.nameFr}}</a>
+                                {% elif LANGUAGE_CODE == "tr" %}
+                                <a href="/category/{{category.url_name}}">{{category.nameTr}}</a>
+                                {% elif LANGUAGE_CODE == "hi" %}
+                                <a href="/category/{{category.url_name}}">{{category.nameHi}}</a>
+                                {% elif LANGUAGE_CODE == "vi" %}
+                                <a href="/category/{{category.url_name}}">{{category.nameVi}}</a>
+                                {% elif LANGUAGE_CODE == "ur" %}
+                                <a href="/category/{{category.url_name}}">{{category.nameUr}}</a>
+                                {% else %}
+                                <a href="/category/{{category.url_name}}">{{category}}</a>
+                                {% endif %}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/forum/">{% trans "MW Forum" %}</a>
+                    </li>
+                    {% if userGroup == 'member' %}
+                    <li class="menu-item-has-children hamburger-dil-profil-revise" style="position:absolute;right:90px;">
+                        <a href="#"><i class="fa fa-user-o" style="font-size:1.1rem;"></i></a>
+                        <ul class="sub-menu" style="right:0px;left:auto;">
+                        <li><a href="{% url 'app:profile' request.user.access_profile.encrypted_id.ekey %}">{% trans "Profile" %}</a></li>
+                        {% comment %} {% if favorites %}
+                        <li><a href="#" onClick="showBoard()">{% trans "Bookmarked Posts" %}</a></li>
+                        {% endif %} {% endcomment %}
+                        {% if favorites %}
+                        <li><a href="{% url 'app:bookmarked' request.user.id %}">{% trans "Bookmarked Posts" %}</a></li>
+                        {% endif %}
+                        <li><a href="{% url 'app:settings' request.user.access_profile.encrypted_id.ekey %}">{% trans "Settings" %}</a></li>
+                        <li><a href="{% url 'app:logoutUser' %}">{% trans "Log Out" %}</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                    {% if userGroup == None %}
+                    <li class="menu-item-has-children hamburger-dil-profil-revise" style="position:absolute;right:90px;">
+                        <a href="#"><i class="fa fa-user-o" style="font-size:1.1rem;"></i></a>
+                        <ul class="sub-menu" style="right:0px;left:auto;">
+                        <li><a href="{% url 'app:loginUser' %}">{% trans "Log In" %}</a></li>
+                        <li><a href="{% url 'app:registerUser' %}">{% trans "Register" %}</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                    <li class="menu-item-has-children hamburger-dil-profil-revise" style="right:40px;position:absolute;">
+                        <a href="#" style="text-transform:uppercase;">{{LANGUAGE_CODE}}</a>
+                        <ul class="sub-menu" style="right:0px;left:auto;">
+                            {% for language in languages %}
+                            <li>
+                                <form action="{% url 'set_language' %}" method="post" class="lang-form-padding">{% csrf_token %}
+                                    <input name="next" type="hidden" value="{{ request.get_full_path }}" />
+                                    <button type="submit" value="{{language.code}}" href="/" style="border:none;background:white;color:black;padding:10px 0;font-size:0.875rem;">{{language.name_local}}</button>
+                                    <input name="language" type="hidden" value="{{language.code}}" />
+                                </form>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- end of nav-collapse -->
+
+            {% comment %} <div class="cart-search-contact">
+                <div class="header-search-form-wrapper">
+                    <button class="search-toggle-btn"><i class="fi flaticon-search"></i></button>
+                    <div class="header-search-form">
+                        <form>
+                            <div>
+                                <input type="text" class="form-control" placeholder="Search here...">
+                                <button type="submit"><i class="fi flaticon-search"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="mini-cart">
+                    <button class="cart-toggle-btn"> <i class="fi flaticon-shopping-bag-3"></i> <span class="cart-count">02</span></button>
+                    <div class="mini-cart-content">
+                        <div class="mini-cart-items">
+                            <div class="mini-cart-item clearfix">
+                                <div class="mini-cart-item-image">
+                                    <a href="#"><img src="assets/images/shop/mini-cart/img-1.jpg" alt></a>
+                                </div>
+                                <div class="mini-cart-item-des">
+                                    <a href="#">Brown Leather Boots</a>
+                                    <span class="mini-cart-item-price">$20.15</span>
+                                    <span class="mini-cart-item-quantity">x 1</span>
+                                </div>
+                            </div>
+                            <div class="mini-cart-item clearfix">
+                                <div class="mini-cart-item-image">
+                                    <a href="#"><img src="assets/images/shop/mini-cart/img-2.jpg" alt></a>
+                                </div>
+                                <div class="mini-cart-item-des">
+                                    <a href="#">Headphones Pryma</a>
+                                    <span class="mini-cart-item-price">$13.25</span>
+                                    <span class="mini-cart-item-quantity">x 2</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mini-cart-action clearfix">
+                            <span class="mini-checkout-price">$215.14</span>
+                            <a href="#" class="view-cart-btn">View Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div> {% endcomment %}
+
+        </div><!-- end of container -->
+    </nav>
+</header>
+<!-- end of header -->

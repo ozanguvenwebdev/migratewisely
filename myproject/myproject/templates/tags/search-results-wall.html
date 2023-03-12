@@ -1,0 +1,44 @@
+{% if results %}
+{% for entry in results %}
+
+<li class="comment even thread-even depth-1" id="comment-1">
+    <div id="div-comment-1" style="border-bottom:1px solid #e3e3e3;">
+        {% comment %} <div class="comment-theme">
+            <div class="comment-image"><img src="assets/images/blog-details/comments-author/img-1.jpg" alt></div>
+        </div> {% endcomment %}
+        <div class="comment-main-area" style="padding-left:0;">
+            <div class="comment-wrapper">
+                <div class="comments-meta">
+                    <h4 style="color: #7e8690;font-weight:300;font-size: 1rem;">
+                        <a href="{% url 'app:profile' entry.profile.encrypted_id.ekey %}">@{{entry.profile.user.username}}</a> 
+                        {% if entry.country %} &nbsp; | &nbsp; <a href="/country/{{entry.country.url_name}}">{{entry.country}}</a> {% endif %} 
+                        {% if entry.category %} &nbsp; | &nbsp; <a href="/category/{{entry.category.url_name}}">{{entry.category}}</a> {% endif %} 
+                        &nbsp; | &nbsp;<span class="comments-date">{{entry.date_created}}</span>
+                    </h4>
+                </div>
+                <div class="comment-area">
+                    <a href="/entry/{{entry.id}}">
+                        <p style="font-size: 1.23rem;font-weight: 300;line-height: 1.3em;margin-bottom:5px;color:#2b2e3a;">{{entry.heading}}</p>
+                        <p style="font-size: 1rem;color:#666;font-weight: 300;line-height: 1.3em;">{{entry.message|truncatewords:15}}</p>
+                    </a>
+                    <div class="comments-reply">
+                        <a class="comment-reply-link" href="/entry/{{entry.id}}"><span>Details</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</li>
+{% endfor %}
+
+{% else %}
+    <div class="container" style="padding:5%;">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="widget search-widget">
+                    <h3 style="font-size:1.3rem;text-transform:none;border:none;margin:0;">Couldn't Find Any Related Entry :(</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

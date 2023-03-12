@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load navbar %}
+{% load i18n %}
+
+{% get_available_languages as LANGUAGES %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info_list for LANGUAGES as languages %}
+
+
+{% block metatags %}
+        <title>Bookmarked | Migrate Wisely</title>
+        <meta name="description" content="Bookmarked articles of user">
+        <meta name="keywords" content="migrate, immigration, greencard, visa, opportunity">
+{% endblock metatags %}
+
+
+
+{% block content %}
+
+<body>
+
+    <!-- start page-wrapper -->
+    <div class="page-wrapper">
+
+        <!-- start preloader -->
+        <div class="preloader">
+            <div class="sk-folding-cube">
+                <div class="sk-cube1 sk-cube"></div>
+                <div class="sk-cube2 sk-cube"></div>
+                <div class="sk-cube4 sk-cube"></div>
+                <div class="sk-cube3 sk-cube"></div>
+            </div>
+        </div>
+        <!-- end preloader -->
+
+        {% InnerNavbarTag %}
+
+        <style>
+            .page-title-revised{
+            background: url({% static 'assets/images/blogdetail.jpg' %}) center center/cover no-repeat local;
+            }
+        </style>
+
+        <!-- start page-title -->
+        <section class="page-title page-title-revised" style="height:130px;background:#F27843;">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-xs-12">
+                        <h2 style="font-weight:500;font-size:2rem;width: 100%;display: inline-flex;justify-content: center;align-items: center;"><i class="ti-bookmark"></i> &nbsp;&nbsp;Bookmarked Posts</h2>
+                        <ol class="breadcrumb mobil-baslik-display-none">
+                            <li class="hvr-underline-from-right"><a style="color:white;" href="/">{% trans "Homepage" %}</a></li>
+                            <li>Bookmarked Posts of @{{requestUser.username}}</li>
+                        </ol>
+                    </div>
+                </div> <!-- end row -->
+            </div> <!-- end container -->
+        </section>        
+        <!-- end page-title -->
+
+        <style>
+            .blog-single-section .entry-meta > li + li:before{background:#97daf7;}
+
+            .displayNoneSecondMessage{display:none;}
+            
+        </style>
+        
+        <!-- start blog-single-section -->
+        <section class="blog-single-section section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-md-9">
+                        <div class="blog-content">
+                            {% for post in fav_posts %}
+                            <div class="col-md-6 col-lg-6 col-sm-12" style="min-height:420px;">
+                                <a href="/post/{{post.url_name}}" style="margin-bottom: 2%;">
+                                    <div class="img-holder">
+                                        <img src="/media/{{post.detail_image}}" alt>
+                                    </div>
+                                    <img src="/media/{{post.country.flag}}" style="float: right;margin: 3% 0 3% 4%;" width="45">
+                                    <h3 style="margin: 0.5em 0 0.5em;">{{post.header}}</h3>
+                                    <p style="font-size:1rem;">{{post.short_expl|truncatewords:17}}</p>
+                                <a/>
+                                <div class="tag">
+                                    <ul style="list-style-type: none;">
+                                        <li>{% for tag in post.tag.all %}<a class="hvr-underline-from-left" href="/tag/{{tag.url_name}}">#{{tag.name}}</a> &nbsp;{% endfor %}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% RightSideTag %}
+                </div>
+            </div> <!-- end container -->
+        </section>
+        <!-- end blog-single-section -->
+        {% FooterTag %}
+
+    </div>
+    <!-- end of page-wrapper -->
+</body>
+
+
+{% endblock content %}
